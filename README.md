@@ -1,4 +1,4 @@
-# Belkins.io Clone - B2B Lead Generation Agency Landing Page
+# BPOHIVE - B2B Lead Generation Agency Landing Page
 
 A pixel-perfect recreation of the Belkins.io landing page built with HTML, Tailwind CSS, and React.
 
