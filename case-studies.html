@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies - BPO Hive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'belkins-orange': '#4EA6FE',
+                        'belkins-dark': '#1A1A1A',
+                        'belkins-gray': '#6B7280',
+                        'belkins-light': '#FFFFFF',
+                        'bpo-blue': '#4EA6FE',
+                        'bpo-light': '#78BBFA',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navbar (Simplified) -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/logo/bpohivelogo.png" alt="BPO Hive Logo" class="h-12 w-auto">
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="nav-link text-belkins-dark hover:text-bpo-blue transition-colors">Home</a>
+                    <a href="case-studies.html" class="nav-link text-bpo-blue font-semibold transition-colors">Case
+                        Studies</a>
+                    <a href="about.html"
+                        class="nav-link text-belkins-dark hover:text-bpo-blue transition-colors">About</a>
+                    <a href="#"
+                        class="btn-primary inline-flex items-center px-6 py-2 bg-bpo-blue text-white font-medium rounded-full hover:bg-blue-600 transition-colors">
+                        Book a call
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="bg-[#20292f] text-white pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Case Studies</h1>
+            <p class="text-xl text-white/70 max-w-2xl">
+                Real results from real partnerships. See how we've helped businesses scale their sales and operations.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <!-- Stats Grid -->
+        <div class="mb-20">
+            <h2 class="text-sm font-semibold text-[#4ea6f8] uppercase tracking-wider mb-8">Combined Impact</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center md:text-left p-6 border border-gray-100 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-[#20292f] mb-2">$20.7M+</div>
+                    <div class="text-sm text-gray-500">Total Value Generated</div>
+                </div>
+                <div class="text-center md:text-left p-6 border border-gray-100 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-[#20292f] mb-2">20,000+</div>
+                    <div class="text-sm text-gray-500">Appointments Booked</div>
+                </div>
+                <div class="text-center md:text-left p-6 border border-gray-100 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-[#20292f] mb-2">4</div>
+                    <div class="text-sm text-gray-500">Programs Delivered</div>
+                </div>
+                <div class="text-center md:text-left p-6 border border-gray-100 rounded-xl shadow-sm">
+                    <div class="text-4xl font-bold text-[#20292f] mb-2">76+ mo</div>
+                    <div class="text-sm text-gray-500">Total Delivery Duration</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Studies List -->
+        <div class="space-y-24">
+
+            <!-- Case Study 1 -->
+            <article
+                class="relative bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden group hover:border-bpo-blue/30 transition-all">
+                <div class="p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-8">
+                        <div>
+                            <span
+                                class="inline-block px-3 py-1 bg-blue-50 text-bpo-blue text-xs font-semibold rounded-full uppercase tracking-wider mb-4">18
+                                months</span>
+                            <h3 class="text-3xl font-bold text-gray-900 mb-2">Publicly Listed Fintech</h3>
+                            <p class="text-xl text-gray-500">Location Acquisition Program</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-lg">
+                                <span class="text-sm text-gray-500">Value Generated:</span>
+                                <span class="text-lg font-bold text-bpo-blue">~$16.0M</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-8 border-y border-gray-100 mb-8">
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">~400</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">Locations Closed</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">~400%</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">Engagement Growth</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">5x</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">Expansion in First 90 Days
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-12">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-red-400 rounded-full mr-2"></span> Challenge
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Client needed a repeatable location pipeline that
+                                could move prospects from initial identification to closed locations without slipping
+                                follow-ups or policy requirements.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span> Solution
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Designed a structured outreach and follow-up
+                                cadence, executed client policies consistently, created reporting for pipeline health,
+                                and operated with weekly performance reviews.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span> Result
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Delivered a scalable playbook the client could
+                                continue using for ongoing expansion.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Case Study 2 -->
+            <article
+                class="relative bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden group hover:border-bpo-blue/30 transition-all">
+                <div class="p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-8">
+                        <div>
+                            <span
+                                class="inline-block px-3 py-1 bg-blue-50 text-bpo-blue text-xs font-semibold rounded-full uppercase tracking-wider mb-4">~24
+                                months</span>
+                            <h3 class="text-3xl font-bold text-gray-900 mb-2">Top Real Estate Recruiting Platform</h3>
+                            <p class="text-xl text-gray-500">Agent Switching Outreach Engine</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-lg">
+                                <span class="text-sm text-gray-500">Value Generated:</span>
+                                <span class="text-lg font-bold text-bpo-blue">$672K-$768K</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-8 border-y border-gray-100 mb-8">
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">7-8</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">Agents Team Size</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">70-80</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">Appts/Month Per Agent</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">60-70%</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">Show Rate</div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-12">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-red-400 rounded-full mr-2"></span> Challenge
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Maintain high daily activity without sacrificing
+                                qualification quality. Create a predictable appointment engine leadership could scale
+                                with clear reporting.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span> Solution
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Built the team end-to-end: recruiting, onboarding,
+                                training, QA, and performance management. Implemented daily operating systems with call
+                                targets and coaching loops.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span> Result
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Estimated 11,760 to 15,360 booked appointments over
+                                the engagement period.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Case Study 3 -->
+            <article
+                class="relative bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden group hover:border-bpo-blue/30 transition-all">
+                <div class="p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-8">
+                        <div>
+                            <span
+                                class="inline-block px-3 py-1 bg-blue-50 text-bpo-blue text-xs font-semibold rounded-full uppercase tracking-wider mb-4">~16
+                                months</span>
+                            <h3 class="text-3xl font-bold text-gray-900 mb-2">New Jersey Flooring Company</h3>
+                            <p class="text-xl text-gray-500">Built and Managed a Sales Team</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-lg">
+                                <span class="text-sm text-gray-500">Value Generated:</span>
+                                <span class="text-lg font-bold text-bpo-blue">~$3.2M</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-8 border-y border-gray-100 mb-8">
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">$200K</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">Avg. Monthly Revenue</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">~$3.2M</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">Total Revenue</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">Consistent</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">Team Performance</div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-12">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-red-400 rounded-full mr-2"></span> Challenge
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Build a sales team quickly while keeping
+                                performance accountable. Ensure consistent follow-up so leads did not leak from the
+                                pipeline.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span> Solution
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Recruited and onboarded sales talent, delivered
+                                training, coaching, and performance management. Implemented follow-up discipline and
+                                supported reporting.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span> Result
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Sales team averaged approximately $200,000 per
+                                month in revenue with improved operational clarity.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Case Study 4 -->
+            <article
+                class="relative bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden group hover:border-bpo-blue/30 transition-all">
+                <div class="p-8 md:p-12">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-8">
+                        <div>
+                            <span
+                                class="inline-block px-3 py-1 bg-blue-50 text-bpo-blue text-xs font-semibold rounded-full uppercase tracking-wider mb-4">~18
+                                months</span>
+                            <h3 class="text-3xl font-bold text-gray-900 mb-2">AI SaaS Company</h3>
+                            <p class="text-xl text-gray-500">Shown Demos to Conversions</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-lg">
+                                <span class="text-sm text-gray-500">Value Generated:</span>
+                                <span class="text-lg font-bold text-bpo-blue">~$864K</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-8 border-y border-gray-100 mb-8">
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">180</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">Total Shown Demos</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">~20%</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">Conversion Rate</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-gray-900">36</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-wide mt-1">New Clients</div>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-12">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-red-400 rounded-full mr-2"></span> Challenge
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Generate consistent demo volume—and ensure demos
+                                were attended. Maintain weekly visibility on pipeline health, show rates, and conversion
+                                performance.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span> Solution
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Built an outreach and follow-up system optimized
+                                for shown demos. Ran weekly meetings and reporting to monitor show rates and
+                                conversion-to-customer.</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider mb-3 flex items-center">
+                                <span class="w-2 h-2 bg-green-400 rounded-full mr-2"></span> Result
+                            </h4>
+                            <p class="text-gray-600 leading-relaxed">Average output of 10 shown demos per month with 20%
+                                conversion to new customers.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-20 text-center">
+            <div class="bg-blue-50 border border-blue-100 rounded-2xl p-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">
+                    Ready to become our next success story?
+                </h3>
+                <p class="text-gray-600 mb-8 max-w-xl mx-auto">
+                    Let's discuss how we can help you achieve similar results for your business.
+                </p>
+                <a href="https://www.jotform.com/build/233154560347050" target="_blank"
+                    class="inline-flex items-center px-8 py-4 bg-bpo-blue hover:bg-blue-600 text-white font-medium rounded-full transition-colors">
+                    Book a Discovery Call
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+            <p>© 2024 BPO Hive. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

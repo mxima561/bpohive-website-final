@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - BPO Hive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'belkins-orange': '#4EA6FE',
+                        'belkins-dark': '#1A1A1A',
+                        'belkins-gray': '#6B7280',
+                        'belkins-light': '#FFFFFF',
+                        'bpo-blue': '#4EA6FE',
+                        'bpo-light': '#78BBFA',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navbar (Simplified) -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/logo/bpohivelogo.png" alt="BPO Hive Logo" class="h-12 w-auto">
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="nav-link text-belkins-dark hover:text-bpo-blue transition-colors">Home</a>
+                    <a href="case-studies.html"
+                        class="nav-link text-belkins-dark hover:text-bpo-blue transition-colors">Case Studies</a>
+                    <a href="about.html" class="nav-link text-bpo-blue font-semibold transition-colors">About</a>
+                    <a href="#"
+                        class="btn-primary inline-flex items-center px-6 py-2 bg-bpo-blue text-white font-medium rounded-full hover:bg-blue-600 transition-colors">
+                        Book a call
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="bg-[#20292f] text-white pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Meet the Team</h1>
+            <p class="text-xl text-white/70 max-w-2xl mx-auto">
+                The experts behind your scalable growth engine.
+            </p>
+        </div>
+    </div>
+
+    <!-- Team Grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Team Member 1 (CEO) -->
+            <div class="group">
+                <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[3/4]">
+                    <img src="assets/about-us/team-photos/Amr.aCEO.webp" alt="Amr - CEO"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <span class="text-white font-medium">Connect on LinkedIn</span>
+                    </div>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Amr</h3>
+                <p class="text-bpo-blue font-medium">CEO & Founder</p>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="group">
+                <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[3/4]">
+                    <!-- Using Amr.M as maybe another Amr or Co-founder? -->
+                    <img src="assets/about-us/team-photos/Amr.M.webp" alt="Amr M."
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Amr M.</h3>
+                <p class="text-gray-500">Leadership Team</p>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="group">
+                <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[3/4]">
+                    <img src="assets/about-us/team-photos/Mai.K.webp" alt="Mai K."
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Mai K.</h3>
+                <p class="text-gray-500">Operations Manager</p>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div class="group">
+                <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[3/4]">
+                    <img src="assets/about-us/team-photos/Abdullah.webp" alt="Abdullah"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Abdullah</h3>
+                <p class="text-gray-500">Senior Account Manager</p>
+            </div>
+
+            <!-- Team Member 5 -->
+            <div class="group">
+                <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[3/4]">
+                    <img src="assets/about-us/team-photos/Layla.m1.webp" alt="Layla"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Layla</h3>
+                <p class="text-gray-500">Account Executive</p>
+            </div>
+
+            <!-- Team Member 6 -->
+            <div class="group">
+                <div class="relative overflow-hidden rounded-2xl mb-4 aspect-[3/4]">
+                    <img src="assets/about-us/team-photos/Maira-Osama.webp" alt="Maira Osama"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Maira Osama</h3>
+                <p class="text-gray-500">Sales Development Rep</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+            <p>© 2024 BPO Hive. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
