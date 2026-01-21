@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - BPO Hive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'belkins-orange': '#4EA6FE',
+                        'belkins-dark': '#1A1A1A',
+                        'belkins-gray': '#6B7280',
+                        'belkins-light': '#FFFFFF',
+                        'bpo-blue': '#4EA6FE',
+                        'bpo-light': '#78BBFA',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Button hover */
+        .btn-primary {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #4EA6FE !important;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(107, 114, 128, 0.3);
+            background: #3d9aef !important;
+        }
+
+        /* Nav link hover */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4EA6FE;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Pricing card hover */
+        .pricing-card {
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.highlighted {
+            border: 2px solid #4EA6FE;
+            box-shadow: 0 20px 40px rgba(78, 166, 254, 0.15);
+        }
+
+        /* Add-on card hover */
+        .addon-card {
+            transition: all 0.3s ease;
+        }
+
+        .addon-card:hover {
+            background: #374151;
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeBookingModal()"></div>
+        <div class="absolute inset-0 overflow-y-auto py-8 px-4">
+            <div class="min-h-full flex items-center justify-center">
+                <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl mx-auto overflow-hidden animate-fadeInUp">
+                    <div class="bg-gradient-to-r from-[#4EA6FE] to-[#78BBFA] px-8 py-10 text-center relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                        <div class="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+                        <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-2 relative z-10">Book Your Discovery Call Now!</h2>
+                        <p class="text-white/80 relative z-10">Let's discuss how we can grow your pipeline</p>
+                    </div>
+                    <form class="p-8 space-y-6" onsubmit="handleFormSubmit(event)">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Name<span class="text-red-500">*</span></label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <input type="text" name="firstName" placeholder="First Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all">
+                                <input type="text" name="lastName" placeholder="Last Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Work Email<span class="text-red-500">*</span></label>
+                            <input type="email" name="email" placeholder="example@example.com" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Company Website<span class="text-red-500">*</span></label>
+                            <input type="url" name="website" placeholder="https://yourcompany.com" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Tell us more about what you need!<span class="text-red-500">*</span></label>
+                            <textarea name="message" rows="4" placeholder="Describe your project, goals, and any specific requirements..." required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-[#4EA6FE] to-[#78BBFA] text-white font-bold text-lg rounded-xl hover:shadow-lg hover:shadow-[#4EA6FE]/30 transform hover:-translate-y-0.5 transition-all duration-300">
+                            Schedule my Consultation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openBookingModal() {
+            document.getElementById('booking-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Thank you! We will contact you shortly to schedule your consultation.');
+            closeBookingModal();
+            event.target.reset();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeBookingModal();
+        });
+    </script>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/logo/bpohivelogo.png" alt="BPO Hive Logo" class="h-12 w-auto">
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <!-- Services & solutions dropdown -->
+                    <div class="dropdown relative">
+                        <button class="nav-link text-belkins-dark hover:text-belkins-orange transition-colors flex items-center">
+                            Services & solutions
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl p-4 border border-gray-100">
+                            <a href="services/appointment-setting.html" class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">Appointment Setting</a>
+                            <a href="services/cold-email-outreach.html" class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">Cold Email Outreach</a>
+                            <a href="services/cold-calling.html" class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">Cold Calling</a>
+                            <a href="services/linkedin-lead-generation.html" class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">LinkedIn Lead Generation</a>
+                            <a href="services/lead-research.html" class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">Lead Research</a>
+                            <a href="services/email-deliverability.html" class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">Email Deliverability</a>
+                            <a href="services/crm-services.html" class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">CRM Services</a>
+                            <a href="services/sales-development.html" class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">Sales Development</a>
+                        </div>
+                    </div>
+                    <a href="industries.html" class="nav-link text-belkins-dark hover:text-belkins-orange transition-colors">Industries</a>
+                    <!-- About dropdown -->
+                    <div class="dropdown relative">
+                        <button class="nav-link text-belkins-dark hover:text-belkins-orange transition-colors flex items-center">
+                            About
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-2xl p-4 border border-gray-100">
+                            <a href="about.html" class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">About Us</a>
+                            <a href="case-studies.html" class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">Case Studies</a>
+                            <a href="careers.html" class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">Careers</a>
+                        </div>
+                    </div>
+                    <a href="pricing.html" class="nav-link text-belkins-orange font-semibold transition-colors">Pricing</a>
+                    <button onclick="openBookingModal()" class="btn-primary inline-flex items-center px-6 py-3 bg-belkins-orange text-white font-medium rounded-full">
+                        Book a call
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 overflow-hidden bg-gradient-to-b from-[#EBF5FF] to-white">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-[#4EA6FE]/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#78BBFA]/10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <p class="animate-fadeInUp text-[#4EA6FE] font-semibold tracking-wider uppercase mb-4">
+                    TRANSPARENT PRICING
+                </p>
+                <h1 class="animate-fadeInUp delay-100 text-5xl md:text-6xl font-bold text-belkins-dark mb-6 leading-tight">
+                    Plans and Pricing
+                </h1>
+                <p class="animate-fadeInUp delay-200 text-xl text-belkins-gray max-w-2xl mx-auto">
+                    Explore our monthly retainer packages, custom-built for your operational needs, team size, and growth goals.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Cards Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Starter Plan -->
+                <div class="pricing-card scroll-animate bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <h3 class="text-2xl font-bold text-belkins-dark mb-3">Starter</h3>
+                    <p class="text-belkins-gray mb-6 min-h-[60px]">Ideal for small teams looking to outsource specific tasks and reduce operational costs.</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-belkins-dark">5+</span>
+                        <span class="text-belkins-gray ml-2">Dedicated Agents</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Customer Support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Data Entry Services</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Back Office Operations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                            <span class="text-gray-400">Quality Assurance</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-gray-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                            <span class="text-gray-400">Dedicated Account Manager</span>
+                        </li>
+                    </ul>
+                    <button onclick="openBookingModal()" class="w-full py-4 border-2 border-gray-300 text-belkins-dark font-semibold rounded-xl hover:border-[#4EA6FE] hover:text-[#4EA6FE] transition-all">
+                        Book a strategy call
+                    </button>
+                </div>
+
+                <!-- Growth Plan (Highlighted) -->
+                <div class="pricing-card highlighted scroll-animate bg-white rounded-2xl p-8 border-2 border-[#4EA6FE] shadow-xl relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#4EA6FE] text-white text-sm font-semibold px-6 py-2 rounded-full">
+                        Best Value
+                    </div>
+                    <h3 class="text-2xl font-bold text-belkins-dark mb-3 mt-4">Growth</h3>
+                    <p class="text-belkins-gray mb-6 min-h-[60px]">For growing companies needing scalable workforce solutions and comprehensive support.</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-[#4EA6FE]">15+</span>
+                        <span class="text-belkins-gray ml-2">Dedicated Agents</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Customer Support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Data Entry Services</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Back Office Operations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Quality Assurance</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Dedicated Account Manager</span>
+                        </li>
+                    </ul>
+                    <button onclick="openBookingModal()" class="btn-primary w-full py-4 bg-[#4EA6FE] text-white font-semibold rounded-xl">
+                        Book a strategy call
+                    </button>
+                </div>
+
+                <!-- Scale Plan -->
+                <div class="pricing-card scroll-animate bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <h3 class="text-2xl font-bold text-belkins-dark mb-3">Scale</h3>
+                    <p class="text-belkins-gray mb-6 min-h-[60px]">A comprehensive solution for enterprises requiring full-service BPO operations.</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-belkins-dark">50+</span>
+                        <span class="text-belkins-gray ml-2">Dedicated Agents</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Everything in Growth</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Custom Reporting</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Priority Support</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Custom Integrations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span class="text-belkins-gray">Dedicated Operations Center</span>
+                        </li>
+                    </ul>
+                    <button onclick="openBookingModal()" class="w-full py-4 border-2 border-gray-300 text-belkins-dark font-semibold rounded-xl hover:border-[#4EA6FE] hover:text-[#4EA6FE] transition-all">
+                        Explore with a quick call
+                    </button>
+                </div>
+            </div>
+
+            <!-- Package Note -->
+            <div class="mt-8 p-6 bg-gray-50 rounded-xl">
+                <p class="text-sm text-belkins-gray text-center">
+                    *Regardless of the plan, each package includes: dedicated onboarding, workforce training, performance monitoring, quality assurance checks, transparent reporting, and ongoing support.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="scroll-animate bg-white rounded-3xl p-8 md:p-12 shadow-xl">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Enterprise Info -->
+                    <div class="md:col-span-1">
+                        <div class="w-24 h-24 bg-gradient-to-br from-[#4EA6FE] to-[#78BBFA] rounded-full mb-6 opacity-30"></div>
+                        <h2 class="text-3xl font-bold text-belkins-dark mb-4">Enterprise</h2>
+                        <p class="text-belkins-gray mb-6">
+                            Tailored for organizations that need bespoke workforce solutions and want full control over every aspect of their operations.
+                        </p>
+                        <button onclick="openBookingModal()" class="btn-primary px-8 py-4 bg-[#4EA6FE] text-white font-semibold rounded-xl">
+                            Discuss tailored pricing
+                        </button>
+                    </div>
+
+                    <!-- Enterprise Features -->
+                    <div class="md:col-span-2">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-[#4EA6FE] rounded-full mt-2"></span>
+                                <span class="text-belkins-gray">Fully customized workforce strategy across all departments</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-[#4EA6FE] rounded-full mt-2"></span>
+                                <span class="text-belkins-gray">Enterprise-grade operations with dedicated teams</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-[#4EA6FE] rounded-full mt-2"></span>
+                                <span class="text-belkins-gray">Team size, structure, and expertise tailored to your workflows</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-[#4EA6FE] rounded-full mt-2"></span>
+                                <span class="text-belkins-gray">All services available on demand, any time</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-[#4EA6FE] rounded-full mt-2"></span>
+                                <span class="text-belkins-gray">Custom integrations with your CRM and internal systems</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-[#4EA6FE] rounded-full mt-2"></span>
+                                <span class="text-belkins-gray">Direct access to a Dedicated Operations Center</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-[#4EA6FE] rounded-full mt-2"></span>
+                                <span class="text-belkins-gray">Custom SLAs and contract terms</span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-[#4EA6FE] rounded-full mt-2"></span>
+                                <span class="text-belkins-gray">Built-in support for SOC 2, ISO, and compliance requirements</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add-ons Section -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                    Optional add-ons for extending
+                </h2>
+                <p class="text-xl text-gray-400">
+                    your capabilities and efficiency
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Add-on 1 -->
+                <div class="addon-card scroll-animate bg-gray-800 rounded-xl p-6 flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 bg-[#4EA6FE]/20 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <span class="text-lg font-medium text-white">Recruitment Process Outsourcing</span>
+                </div>
+
+                <!-- Add-on 2 -->
+                <div class="addon-card scroll-animate bg-gray-800 rounded-xl p-6 flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 bg-[#4EA6FE]/20 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <span class="text-lg font-medium text-white">Technical Support Services</span>
+                </div>
+
+                <!-- Add-on 3 -->
+                <div class="addon-card scroll-animate bg-gray-800 rounded-xl p-6 flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 bg-[#4EA6FE]/20 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                    </div>
+                    <span class="text-lg font-medium text-white">HR Administration</span>
+                </div>
+
+                <!-- Add-on 4 -->
+                <div class="addon-card scroll-animate bg-gray-800 rounded-xl p-6 flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 bg-[#4EA6FE]/20 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <span class="text-lg font-medium text-white">Finance & Accounting</span>
+                </div>
+
+                <!-- Add-on 5 -->
+                <div class="addon-card scroll-animate bg-gray-800 rounded-xl p-6 flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 bg-[#4EA6FE]/20 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <span class="text-lg font-medium text-white">Content Moderation</span>
+                </div>
+
+                <!-- Add-on 6 -->
+                <div class="addon-card scroll-animate bg-gray-800 rounded-xl p-6 flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 bg-[#4EA6FE]/20 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <span class="text-lg font-medium text-white">Compliance Management</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="py-20 bg-gradient-to-b from-gray-100 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-3xl md:text-4xl font-bold text-belkins-dark mb-4">
+                    Top-tier tools at no extra cost
+                </h2>
+                <p class="text-xl text-belkins-gray">
+                    Save thousands annually on premium workforce management and communication tools included in our packages.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Tech Partners -->
+                <div class="scroll-animate">
+                    <h3 class="text-xl font-bold text-belkins-dark mb-6">Our tech partners</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition">
+                            <span class="text-belkins-gray font-medium">Zendesk</span>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition">
+                            <span class="text-belkins-gray font-medium">Salesforce</span>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition">
+                            <span class="text-belkins-gray font-medium">Freshdesk</span>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition">
+                            <span class="text-belkins-gray font-medium">HubSpot</span>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition">
+                            <span class="text-belkins-gray font-medium">Intercom</span>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition">
+                            <span class="text-belkins-gray font-medium">Slack</span>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition">
+                            <span class="text-belkins-gray font-medium">Microsoft Teams</span>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:shadow-md transition">
+                            <span class="text-belkins-gray font-medium">Zoom</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proprietary Tools -->
+                <div class="scroll-animate">
+                    <h3 class="text-xl font-bold text-belkins-dark mb-6">Proprietary tools</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 flex items-center gap-4 hover:shadow-md transition">
+                            <div class="w-12 h-12 bg-[#4EA6FE]/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-belkins-dark">HiveTrack</h4>
+                                <p class="text-sm text-belkins-gray">Real-time workforce monitoring and analytics</p>
+                            </div>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 flex items-center gap-4 hover:shadow-md transition">
+                            <div class="w-12 h-12 bg-[#4EA6FE]/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-belkins-dark">QualityHub</h4>
+                                <p class="text-sm text-belkins-gray">AI-powered quality assurance platform</p>
+                            </div>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-4 flex items-center gap-4 hover:shadow-md transition">
+                            <div class="w-12 h-12 bg-[#4EA6FE]/10 rounded-lg flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-belkins-dark">HiveConnect</h4>
+                                <p class="text-sm text-belkins-gray">Seamless integration hub for your tools</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-[#EBF5FF] to-[#DBEAFE]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="scroll-animate bg-white rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
+                <!-- Decorative elements -->
+                <div class="absolute left-0 top-0 w-48 h-48 bg-gradient-to-br from-[#4EA6FE] to-[#78BBFA] rounded-full -translate-x-1/2 -translate-y-1/2 opacity-20"></div>
+                <div class="absolute right-0 bottom-0 w-32 h-32 bg-gradient-to-br from-[#78BBFA] to-[#4EA6FE] rounded-full translate-x-1/2 translate-y-1/2 opacity-20"></div>
+
+                <div class="relative z-10 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-belkins-dark mb-4">
+                        Talk to our expert to find out<br>what pricing plan suits you more
+                    </h2>
+                    <button onclick="openBookingModal()" class="btn-primary px-8 py-4 bg-[#4EA6FE] text-white font-semibold rounded-xl text-lg mt-6">
+                        Let's discuss your growth
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+                <!-- Logo and contact -->
+                <div class="col-span-2 md:col-span-1">
+                    <a href="index.html" class="flex items-center mb-6">
+                        <img src="assets/logo/bpohivelogo.png" alt="BPO Hive Logo" class="h-10 w-auto">
+                    </a>
+                    <p class="text-gray-400 mb-2">info@bpohive.com</p>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="https://www.linkedin.com/company/bpohive" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-300 hover:bg-[#0A66C2] hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/bpohive1/" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-300 hover:bg-[#1877F2] hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">About Us</a></li>
+                        <li><a href="case-studies.html" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Case Studies</a></li>
+                        <li><a href="careers.html" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Industries -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Industries</h4>
+                    <ul class="space-y-2">
+                        <li><a href="industries.html" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Finance</a></li>
+                        <li><a href="industries.html" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">SaaS</a></li>
+                        <li><a href="industries.html" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Consulting</a></li>
+                        <li><a href="industries.html" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Recruitment</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li>
+                            <button onclick="openBookingModal()" class="btn-primary inline-flex items-center px-4 py-2 bg-[#4EA6FE] text-white text-sm font-semibold rounded-full">
+                                Book a call
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom bar -->
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2026 BPO Hive. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-4 text-sm">
+                    <a href="privacy-policy.html" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Privacy Policy</a>
+                    <a href="terms-of-service.html" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+
+</html>
