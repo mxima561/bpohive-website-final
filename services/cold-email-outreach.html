@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cold Email Outreach - BPO Hive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bpo-blue': '#4EA6FE',
+                        'bpo-light': '#78BBFA',
+                        'bpo-dark': '#1A1A1A',
+                        'bpo-gray': '#6B7280',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .btn-primary {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #4EA6FE !important;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(78, 166, 254, 0.4);
+            background: #3d9aef !important;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #4EA6FE 0%, #78BBFA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeBookingModal()"></div>
+        <div class="absolute inset-0 overflow-y-auto py-8 px-4">
+            <div class="min-h-full flex items-center justify-center">
+                <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl mx-auto overflow-hidden">
+                    <div class="bg-gradient-to-r from-[#4EA6FE] to-[#78BBFA] px-8 py-10 text-center relative">
+                        <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                        <h2 class="text-3xl font-bold text-white mb-2">Book Your Discovery Call</h2>
+                        <p class="text-white/80">Let's discuss your email outreach needs</p>
+                    </div>
+                    <form class="p-8 space-y-6" onsubmit="handleFormSubmit(event)">
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="text" placeholder="First Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                            <input type="text" placeholder="Last Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                        </div>
+                        <input type="email" placeholder="Work Email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                        <input type="url" placeholder="Company Website" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                        <textarea placeholder="Tell us about your goals..." rows="4" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none resize-none"></textarea>
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-bpo-blue to-bpo-light text-white font-bold rounded-xl hover:shadow-lg transition-all">
+                            Schedule Consultation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openBookingModal() {
+            document.getElementById('booking-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Thank you! We will contact you shortly.');
+            closeBookingModal();
+        }
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBookingModal(); });
+    </script>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html" class="flex items-center">
+                    <img src="../assets/logo/bpohivelogo.png" alt="BPO Hive" class="h-12 w-auto">
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">Home</a>
+                    <a href="../industries.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">Industries</a>
+                    <a href="../case-studies.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">Case Studies</a>
+                    <a href="../about.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">About</a>
+                    <button onclick="openBookingModal()" class="btn-primary px-6 py-2 text-white font-medium rounded-full">Book a call</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-bpo-dark via-gray-800 to-bpo-dark relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-bpo-blue/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-bpo-light/20 rounded-full blur-3xl"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <p class="text-bpo-blue font-semibold tracking-wider uppercase mb-4">LEAD GENERATION SERVICE</p>
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                    Cold Email <span class="gradient-text">Outreach</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8">
+                    Run email campaigns that actually convert. Our data-driven approach ensures your message reaches the right inbox at the right time, turning cold prospects into warm leads.
+                </p>
+                <button onclick="openBookingModal()" class="btn-primary px-8 py-4 text-white font-semibold rounded-full text-lg">
+                    Start Your Campaign
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="scroll-animate">
+                    <h2 class="text-4xl font-bold text-bpo-dark mb-6">Email Campaigns That Convert</h2>
+                    <p class="text-lg text-bpo-gray mb-6">
+                        Cold email remains one of the most effective B2B lead generation channels when done right. We combine personalized messaging, verified data, and strategic timing to achieve open rates 3x the industry average.
+                    </p>
+                    <p class="text-lg text-bpo-gray mb-6">
+                        Our team handles everything from copywriting and A/B testing to deliverability optimization and response management. You get qualified replies ready for your sales team.
+                    </p>
+                    <div class="flex items-center space-x-8 mt-8">
+                        <div class="text-center">
+                            <p class="text-4xl font-bold text-bpo-blue">45%</p>
+                            <p class="text-bpo-gray text-sm">Open Rate</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-bold text-bpo-blue">12%</p>
+                            <p class="text-bpo-gray text-sm">Reply Rate</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-4xl font-bold text-bpo-blue">500K+</p>
+                            <p class="text-bpo-gray text-sm">Emails Sent</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-animate">
+                    <div class="bg-gradient-to-br from-bpo-blue/10 to-bpo-light/10 rounded-3xl p-8">
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-xl p-4 shadow-md border-l-4 border-bpo-blue">
+                                <p class="text-sm text-bpo-gray">Subject Line</p>
+                                <p class="font-semibold text-bpo-dark">Quick question about {{company}}'s growth plans</p>
+                            </div>
+                            <div class="bg-white rounded-xl p-4 shadow-md">
+                                <p class="text-bpo-gray text-sm mb-2">Hi {{first_name}},</p>
+                                <p class="text-bpo-gray text-sm">I noticed {{company}} recently expanded into {{market}}. We've helped similar companies increase their pipeline by 40%...</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                                <span class="text-sm text-bpo-gray">Personalized for each prospect</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Process -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl font-bold text-bpo-dark mb-4">Our Email Outreach Process</h2>
+                <p class="text-xl text-bpo-gray max-w-2xl mx-auto">A systematic approach to cold email that delivers results</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="scroll-animate bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <div class="w-12 h-12 bg-bpo-blue text-white rounded-xl flex items-center justify-center font-bold text-xl mb-4">1</div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-2">List Building & Verification</h3>
+                    <p class="text-bpo-gray">We build targeted prospect lists and verify every email address to ensure 98%+ deliverability.</p>
+                </div>
+                <div class="scroll-animate bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <div class="w-12 h-12 bg-bpo-blue text-white rounded-xl flex items-center justify-center font-bold text-xl mb-4">2</div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-2">Copywriting & Personalization</h3>
+                    <p class="text-bpo-gray">Our copywriters craft compelling sequences with dynamic personalization that resonates with each prospect.</p>
+                </div>
+                <div class="scroll-animate bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <div class="w-12 h-12 bg-bpo-blue text-white rounded-xl flex items-center justify-center font-bold text-xl mb-4">3</div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-2">Infrastructure Setup</h3>
+                    <p class="text-bpo-gray">We set up and warm dedicated sending domains to maximize deliverability and protect your reputation.</p>
+                </div>
+                <div class="scroll-animate bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <div class="w-12 h-12 bg-bpo-blue text-white rounded-xl flex items-center justify-center font-bold text-xl mb-4">4</div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-2">Campaign Launch</h3>
+                    <p class="text-bpo-gray">Strategic sending schedules optimized for your target audience's time zones and behaviors.</p>
+                </div>
+                <div class="scroll-animate bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <div class="w-12 h-12 bg-bpo-blue text-white rounded-xl flex items-center justify-center font-bold text-xl mb-4">5</div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-2">A/B Testing & Optimization</h3>
+                    <p class="text-bpo-gray">Continuous testing of subject lines, copy, and CTAs to improve performance over time.</p>
+                </div>
+                <div class="scroll-animate bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <div class="w-12 h-12 bg-bpo-blue text-white rounded-xl flex items-center justify-center font-bold text-xl mb-4">6</div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-2">Response Management</h3>
+                    <p class="text-bpo-gray">We handle initial replies, qualify interest, and hand off warm leads ready for your sales team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl font-bold text-bpo-dark mb-4">What's Included</h2>
+                <p class="text-xl text-bpo-gray max-w-2xl mx-auto">Everything you need for successful email outreach</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="feature-card scroll-animate bg-gradient-to-br from-bpo-blue/5 to-bpo-light/5 rounded-2xl p-8 border border-bpo-blue/20">
+                    <h3 class="text-2xl font-bold text-bpo-dark mb-4">Campaign Management</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-bpo-gray"><svg class="w-5 h-5 text-bpo-blue mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dedicated campaign manager</li>
+                        <li class="flex items-center text-bpo-gray"><svg class="w-5 h-5 text-bpo-blue mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Custom email sequences (3-5 emails)</li>
+                        <li class="flex items-center text-bpo-gray"><svg class="w-5 h-5 text-bpo-blue mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Weekly performance reports</li>
+                        <li class="flex items-center text-bpo-gray"><svg class="w-5 h-5 text-bpo-blue mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Strategy optimization calls</li>
+                    </ul>
+                </div>
+                <div class="feature-card scroll-animate bg-gradient-to-br from-bpo-blue/5 to-bpo-light/5 rounded-2xl p-8 border border-bpo-blue/20">
+                    <h3 class="text-2xl font-bold text-bpo-dark mb-4">Technical Setup</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-bpo-gray"><svg class="w-5 h-5 text-bpo-blue mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dedicated sending domains</li>
+                        <li class="flex items-center text-bpo-gray"><svg class="w-5 h-5 text-bpo-blue mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>SPF, DKIM, DMARC configuration</li>
+                        <li class="flex items-center text-bpo-gray"><svg class="w-5 h-5 text-bpo-blue mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Domain warm-up process</li>
+                        <li class="flex items-center text-bpo-gray"><svg class="w-5 h-5 text-bpo-blue mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Deliverability monitoring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-bpo-blue to-bpo-light">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Ready to Launch Your Campaign?
+            </h2>
+            <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+                Let's discuss how our cold email outreach can fill your pipeline with qualified leads. Book a free consultation today.
+            </p>
+            <button onclick="openBookingModal()" class="px-8 py-4 bg-white text-bpo-blue font-semibold rounded-full text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">
+                Book Your Free Consultation
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <a href="../index.html">
+                    <img src="../assets/logo/bpohivelogo.png" alt="BPO Hive" class="h-10 mb-4 md:mb-0">
+                </a>
+                <p class="text-bpo-gray text-sm">© 2026 BPO Hive. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

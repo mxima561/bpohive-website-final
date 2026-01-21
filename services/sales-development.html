@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Development Services - BPO Hive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { 'bpo-blue': '#4EA6FE', 'bpo-light': '#78BBFA', 'bpo-dark': '#1A1A1A', 'bpo-gray': '#6B7280' } } }
+        }
+    </script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .btn-primary { transition: all 0.3s; background: #4EA6FE !important; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(78, 166, 254, 0.4); }
+        .gradient-text { background: linear-gradient(135deg, #4EA6FE, #78BBFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .scroll-animate { opacity: 0; transform: translateY(30px); transition: all 0.8s; }
+        .scroll-animate.visible { opacity: 1; transform: translateY(0); }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-white">
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeBookingModal()"></div>
+        <div class="absolute inset-0 overflow-y-auto py-8 px-4">
+            <div class="min-h-full flex items-center justify-center">
+                <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl mx-auto overflow-hidden">
+                    <div class="bg-gradient-to-r from-[#4EA6FE] to-[#78BBFA] px-8 py-10 text-center relative">
+                        <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                        <h2 class="text-3xl font-bold text-white mb-2">Book Your Discovery Call</h2>
+                        <p class="text-white/80">Let's discuss your sales development needs</p>
+                    </div>
+                    <form class="p-8 space-y-6" onsubmit="handleFormSubmit(event)">
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="text" placeholder="First Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                            <input type="text" placeholder="Last Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                        </div>
+                        <input type="email" placeholder="Work Email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                        <input type="url" placeholder="Company Website" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                        <textarea placeholder="Tell us about your goals..." rows="4" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none resize-none"></textarea>
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-bpo-blue to-bpo-light text-white font-bold rounded-xl hover:shadow-lg transition-all">Schedule Consultation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openBookingModal() { document.getElementById('booking-modal').classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+        function closeBookingModal() { document.getElementById('booking-modal').classList.add('hidden'); document.body.style.overflow = ''; }
+        function handleFormSubmit(e) { e.preventDefault(); alert('Thank you! We will contact you shortly.'); closeBookingModal(); }
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBookingModal(); });
+    </script>
+
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html"><img src="../assets/logo/bpohivelogo.png" alt="BPO Hive" class="h-12 w-auto"></a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">Home</a>
+                    <a href="../industries.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">Industries</a>
+                    <a href="../case-studies.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">Case Studies</a>
+                    <a href="../about.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">About</a>
+                    <button onclick="openBookingModal()" class="btn-primary px-6 py-2 text-white font-medium rounded-full">Book a call</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20 bg-gradient-to-br from-bpo-dark via-gray-800 to-bpo-dark relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <p class="text-bpo-blue font-semibold tracking-wider uppercase mb-4">SALES OPERATIONS</p>
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">Sales <span class="gradient-text">Development</span></h1>
+                <p class="text-xl text-gray-300 mb-8">Build and scale your sales development function with dedicated SDRs who become an extension of your team. Full-funnel support from prospecting to pipeline.</p>
+                <button onclick="openBookingModal()" class="btn-primary px-8 py-4 text-white font-semibold rounded-full text-lg">Scale Your Sales</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="scroll-animate">
+                    <h2 class="text-4xl font-bold text-bpo-dark mb-6">Your Dedicated SDR Team</h2>
+                    <p class="text-lg text-bpo-gray mb-6">Building an in-house SDR team is expensive and time-consuming. We provide fully trained, dedicated SDRs who work exclusively on your accounts—without the overhead of hiring.</p>
+                    <p class="text-lg text-bpo-gray mb-6">Our SDRs are trained on your product, industry, and ideal customer profile. They integrate with your tools and processes, attending your meetings and reporting directly to your sales leadership.</p>
+                    <div class="flex items-center space-x-8 mt-8">
+                        <div class="text-center"><p class="text-4xl font-bold text-orange-500">50+</p><p class="text-bpo-gray text-sm">Active SDRs</p></div>
+                        <div class="text-center"><p class="text-4xl font-bold text-orange-500">60%</p><p class="text-bpo-gray text-sm">Cost Savings</p></div>
+                        <div class="text-center"><p class="text-4xl font-bold text-orange-500">2wk</p><p class="text-bpo-gray text-sm">Ramp Time</p></div>
+                    </div>
+                </div>
+                <div class="scroll-animate">
+                    <div class="bg-gradient-to-br from-orange-500/10 to-bpo-light/10 rounded-3xl p-8">
+                        <div class="space-y-4">
+                            <div class="bg-white rounded-xl p-5 shadow-md">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="font-semibold text-bpo-dark">SDR Performance</span>
+                                    <span class="text-green-600 text-sm font-medium">This Month</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between"><span class="text-bpo-gray">Calls Made</span><span class="font-semibold">847</span></div>
+                                    <div class="flex justify-between"><span class="text-bpo-gray">Emails Sent</span><span class="font-semibold">2,340</span></div>
+                                    <div class="flex justify-between"><span class="text-bpo-gray">Meetings Booked</span><span class="font-semibold text-green-600">43</span></div>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-xl p-4 shadow-md flex items-center justify-between">
+                                <span class="text-bpo-dark font-medium">Pipeline Generated</span>
+                                <span class="text-orange-500 font-bold">$1.2M</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl font-bold text-bpo-dark mb-4">What's Included</h2>
+                <p class="text-xl text-bpo-gray max-w-2xl mx-auto">Everything you need to scale your sales development</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">Dedicated SDRs</h3>
+                    <p class="text-bpo-gray">Full-time SDRs working exclusively on your accounts, not shared across clients.</p>
+                </div>
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">Custom Training</h3>
+                    <p class="text-bpo-gray">Comprehensive training on your product, ICP, competitors, and sales methodology.</p>
+                </div>
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">Multi-Channel Outreach</h3>
+                    <p class="text-bpo-gray">Phone, email, LinkedIn, and social selling across all relevant channels.</p>
+                </div>
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">Lead Qualification</h3>
+                    <p class="text-bpo-gray">BANT/MEDDIC qualification to ensure only sales-ready leads reach your AEs.</p>
+                </div>
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">Performance Tracking</h3>
+                    <p class="text-bpo-gray">Real-time dashboards and weekly reports on all SDR activities and results.</p>
+                </div>
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-orange-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">Scalable Team</h3>
+                    <p class="text-bpo-gray">Easily add or reduce SDRs based on your pipeline needs and seasonality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gradient-to-r from-orange-500 to-bpo-blue">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Scale Your Sales?</h2>
+            <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">Let's discuss how our sales development team can help you hit your revenue targets. Book a free consultation today.</p>
+            <button onclick="openBookingModal()" class="px-8 py-4 bg-white text-orange-600 font-semibold rounded-full text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">Book Your Free Consultation</button>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <a href="../index.html"><img src="../assets/logo/bpohivelogo.png" alt="BPO Hive" class="h-10 mb-4 md:mb-0"></a>
+                <p class="text-bpo-gray text-sm">© 2026 BPO Hive. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

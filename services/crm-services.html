@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Services - BPO Hive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { 'bpo-blue': '#4EA6FE', 'bpo-light': '#78BBFA', 'bpo-dark': '#1A1A1A', 'bpo-gray': '#6B7280' } } }
+        }
+    </script>
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        .btn-primary { transition: all 0.3s; background: #4EA6FE !important; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(78, 166, 254, 0.4); }
+        .gradient-text { background: linear-gradient(135deg, #4EA6FE, #78BBFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .scroll-animate { opacity: 0; transform: translateY(30px); transition: all 0.8s; }
+        .scroll-animate.visible { opacity: 1; transform: translateY(0); }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-white">
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeBookingModal()"></div>
+        <div class="absolute inset-0 overflow-y-auto py-8 px-4">
+            <div class="min-h-full flex items-center justify-center">
+                <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl mx-auto overflow-hidden">
+                    <div class="bg-gradient-to-r from-[#4EA6FE] to-[#78BBFA] px-8 py-10 text-center relative">
+                        <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                        <h2 class="text-3xl font-bold text-white mb-2">Book Your Discovery Call</h2>
+                        <p class="text-white/80">Let's discuss your CRM needs</p>
+                    </div>
+                    <form class="p-8 space-y-6" onsubmit="handleFormSubmit(event)">
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="text" placeholder="First Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                            <input type="text" placeholder="Last Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                        </div>
+                        <input type="email" placeholder="Work Email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                        <input type="url" placeholder="Company Website" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none">
+                        <textarea placeholder="Tell us about your goals..." rows="4" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-bpo-blue outline-none resize-none"></textarea>
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-bpo-blue to-bpo-light text-white font-bold rounded-xl hover:shadow-lg transition-all">Schedule Consultation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function openBookingModal() { document.getElementById('booking-modal').classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+        function closeBookingModal() { document.getElementById('booking-modal').classList.add('hidden'); document.body.style.overflow = ''; }
+        function handleFormSubmit(e) { e.preventDefault(); alert('Thank you! We will contact you shortly.'); closeBookingModal(); }
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBookingModal(); });
+    </script>
+
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="../index.html"><img src="../assets/logo/bpohivelogo.png" alt="BPO Hive" class="h-12 w-auto"></a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">Home</a>
+                    <a href="../industries.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">Industries</a>
+                    <a href="../case-studies.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">Case Studies</a>
+                    <a href="../about.html" class="text-bpo-dark hover:text-bpo-blue transition-colors">About</a>
+                    <button onclick="openBookingModal()" class="btn-primary px-6 py-2 text-white font-medium rounded-full">Book a call</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20 bg-gradient-to-br from-bpo-dark via-gray-800 to-bpo-dark relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl">
+                <p class="text-bpo-blue font-semibold tracking-wider uppercase mb-4">SALES OPERATIONS</p>
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">CRM <span class="gradient-text">Services</span></h1>
+                <p class="text-xl text-gray-300 mb-8">Optimize your sales operations with expert CRM setup, management, and integration. We help you get the most out of your CRM investment.</p>
+                <button onclick="openBookingModal()" class="btn-primary px-8 py-4 text-white font-semibold rounded-full text-lg">Optimize Your CRM</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="scroll-animate">
+                    <h2 class="text-4xl font-bold text-bpo-dark mb-6">Your CRM, Fully Optimized</h2>
+                    <p class="text-lg text-bpo-gray mb-6">A CRM is only as good as its implementation. We help you set up, customize, and maintain your CRM so your sales team can focus on selling, not data entry.</p>
+                    <p class="text-lg text-bpo-gray mb-6">From HubSpot to Salesforce to custom solutions, our team has expertise across all major platforms. We'll make sure your CRM works for you, not against you.</p>
+                    <div class="flex items-center space-x-8 mt-8">
+                        <div class="text-center"><p class="text-4xl font-bold text-purple-500">100+</p><p class="text-bpo-gray text-sm">CRMs Configured</p></div>
+                        <div class="text-center"><p class="text-4xl font-bold text-purple-500">40%</p><p class="text-bpo-gray text-sm">Time Saved</p></div>
+                        <div class="text-center"><p class="text-4xl font-bold text-purple-500">3x</p><p class="text-bpo-gray text-sm">Data Accuracy</p></div>
+                    </div>
+                </div>
+                <div class="scroll-animate">
+                    <div class="bg-gradient-to-br from-purple-500/10 to-bpo-light/10 rounded-3xl p-8">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white rounded-xl p-4 shadow-md text-center"><img src="https://cdn.worldvectorlogo.com/logos/hubspot-1.svg" alt="HubSpot" class="h-8 mx-auto mb-2"><p class="text-sm text-bpo-gray">HubSpot</p></div>
+                            <div class="bg-white rounded-xl p-4 shadow-md text-center"><img src="https://cdn.worldvectorlogo.com/logos/salesforce-2.svg" alt="Salesforce" class="h-8 mx-auto mb-2"><p class="text-sm text-bpo-gray">Salesforce</p></div>
+                            <div class="bg-white rounded-xl p-4 shadow-md text-center"><img src="https://cdn.worldvectorlogo.com/logos/pipedrive-1.svg" alt="Pipedrive" class="h-8 mx-auto mb-2"><p class="text-sm text-bpo-gray">Pipedrive</p></div>
+                            <div class="bg-white rounded-xl p-4 shadow-md text-center"><img src="https://cdn.worldvectorlogo.com/logos/zoho-1.svg" alt="Zoho" class="h-8 mx-auto mb-2"><p class="text-sm text-bpo-gray">Zoho</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl font-bold text-bpo-dark mb-4">Our CRM Services</h2>
+                <p class="text-xl text-bpo-gray max-w-2xl mx-auto">End-to-end CRM support for sales teams</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">CRM Setup</h3>
+                    <p class="text-bpo-gray">Complete CRM implementation with custom fields, pipelines, and workflows.</p>
+                </div>
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">Data Migration</h3>
+                    <p class="text-bpo-gray">Clean, deduplicate, and migrate your data from legacy systems.</p>
+                </div>
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">Integrations</h3>
+                    <p class="text-bpo-gray">Connect your CRM with email, calendar, marketing tools, and more.</p>
+                </div>
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">Reporting & Dashboards</h3>
+                    <p class="text-bpo-gray">Custom reports and dashboards for sales visibility and forecasting.</p>
+                </div>
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">Automation</h3>
+                    <p class="text-bpo-gray">Automated workflows for lead routing, follow-ups, and task creation.</p>
+                </div>
+                <div class="feature-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm transition-all">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6"><svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                    <h3 class="text-xl font-bold text-bpo-dark mb-3">Ongoing Support</h3>
+                    <p class="text-bpo-gray">Continuous optimization, training, and technical support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gradient-to-r from-purple-500 to-bpo-blue">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Optimize Your CRM?</h2>
+            <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">Let's discuss how our CRM services can streamline your sales operations. Book a free consultation today.</p>
+            <button onclick="openBookingModal()" class="px-8 py-4 bg-white text-purple-600 font-semibold rounded-full text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">Book Your Free Consultation</button>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <a href="../index.html"><img src="../assets/logo/bpohivelogo.png" alt="BPO Hive" class="h-10 mb-4 md:mb-0"></a>
+                <p class="text-bpo-gray text-sm">© 2026 BPO Hive. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

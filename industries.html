@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industries We Serve - BPO Hive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'belkins-orange': '#4EA6FE',
+                        'belkins-dark': '#1A1A1A',
+                        'belkins-gray': '#6B7280',
+                        'belkins-light': '#FFFFFF',
+                        'bpo-blue-light': '#78BBFA',
+                        'bpo-blue-dark': '#4EA6FE',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Button hover effects */
+        .btn-primary {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(78, 166, 254, 0.3);
+        }
+
+        /* Industry card hover */
+        .industry-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .industry-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .industry-card:hover .industry-icon {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #4EA6FE 0%, #78BBFA 100%);
+        }
+
+        .industry-card:hover .industry-icon svg {
+            color: white;
+        }
+
+        .industry-icon {
+            transition: all 0.4s ease;
+        }
+
+        /* Nav link hover */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4EA6FE;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #4EA6FE 0%, #78BBFA 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeBookingModal()"></div>
+        <div class="absolute inset-0 overflow-y-auto py-8 px-4">
+            <div class="min-h-full flex items-center justify-center">
+                <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl mx-auto overflow-hidden animate-fadeInUp">
+                    <div class="bg-gradient-to-r from-[#4EA6FE] to-[#78BBFA] px-8 py-10 text-center relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                        <div class="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+                        <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-2 relative z-10">Book Your Discovery Call Now!</h2>
+                        <p class="text-white/80 relative z-10">Let's discuss how we can grow your pipeline</p>
+                    </div>
+                    <form class="p-8 space-y-6" onsubmit="handleFormSubmit(event)">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Name<span class="text-red-500">*</span></label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <input type="text" name="firstName" placeholder="First Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all">
+                                <input type="text" name="lastName" placeholder="Last Name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Company Website<span class="text-red-500">*</span></label>
+                            <input type="url" name="website" placeholder="https://yourcompany.com" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Work Email<span class="text-red-500">*</span></label>
+                            <input type="email" name="email" placeholder="example@example.com" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Job Title<span class="text-red-500">*</span></label>
+                            <input type="text" name="jobTitle" placeholder="e.g. Marketing Director" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Country<span class="text-red-500">*</span></label>
+                            <select name="country" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all bg-white">
+                                <option value="">Please Select Country</option>
+                                <option value="US">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="CA">Canada</option>
+                                <option value="AU">Australia</option>
+                                <option value="DE">Germany</option>
+                                <option value="OTHER">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number<span class="text-red-500">*</span></label>
+                            <input type="tel" name="phone" placeholder="+1 (555) 000-0000" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Tell us more about what you need!<span class="text-red-500">*</span></label>
+                            <textarea name="message" rows="4" placeholder="Describe your project, goals, and any specific requirements..." required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-[#4EA6FE] to-[#78BBFA] text-white font-bold text-lg rounded-xl hover:shadow-lg hover:shadow-[#4EA6FE]/30 transform hover:-translate-y-0.5 transition-all duration-300">
+                            Schedule my Consultation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openBookingModal() {
+            document.getElementById('booking-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Thank you! We will contact you shortly to schedule your consultation.');
+            closeBookingModal();
+            event.target.reset();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeBookingModal();
+        });
+    </script>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <img src="assets/logo/bpohivelogo.png" alt="BPO Hive Logo" class="h-12 w-auto">
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <div class="dropdown relative">
+                        <button class="nav-link flex items-center text-belkins-dark hover:text-belkins-orange transition-colors">
+                            Services & solutions
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="industries.html" class="nav-link text-belkins-orange font-medium transition-colors">Industries</a>
+                    <a href="case-studies.html" class="nav-link text-belkins-dark hover:text-belkins-orange transition-colors">Case studies</a>
+                    <div class="dropdown relative">
+                        <button class="nav-link flex items-center text-belkins-dark hover:text-belkins-orange transition-colors">
+                            About
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="#" class="nav-link text-belkins-dark hover:text-belkins-orange transition-colors">Pricing</a>
+                </div>
+                <div class="hidden md:block">
+                    <button onclick="openBookingModal()" class="btn-primary inline-flex items-center px-6 py-3 bg-belkins-orange text-white font-medium rounded-full">
+                        Book a call
+                    </button>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-white">
+        <div class="absolute top-20 right-0 w-96 h-96 bg-[#4EA6FE]/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-[#78BBFA]/10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <p class="animate-fadeInUp text-belkins-orange font-semibold tracking-wider uppercase mb-4">
+                    INDUSTRY EXPERTISE
+                </p>
+                <h1 class="animate-fadeInUp delay-100 text-5xl md:text-7xl font-bold text-belkins-dark mb-6 leading-tight">
+                    Industries <span class="gradient-text">We Serve</span>
+                </h1>
+                <p class="animate-fadeInUp delay-200 text-xl text-belkins-gray mb-8 max-w-2xl mx-auto">
+                    With deep expertise across 50+ industries, we understand your unique challenges and deliver tailored B2B lead generation strategies that drive real results.
+                </p>
+                <div class="animate-fadeInUp delay-300">
+                    <button onclick="openBookingModal()" class="btn-primary inline-flex items-center px-8 py-4 bg-belkins-orange text-white font-semibold rounded-full text-lg">
+                        Discuss Your Industry
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="py-12 bg-gradient-to-r from-[#4EA6FE] to-[#78BBFA]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+                <div class="scroll-animate">
+                    <p class="text-4xl md:text-5xl font-bold mb-2">50+</p>
+                    <p class="text-white/80">Industries Served</p>
+                </div>
+                <div class="scroll-animate">
+                    <p class="text-4xl md:text-5xl font-bold mb-2">1000+</p>
+                    <p class="text-white/80">Happy Clients</p>
+                </div>
+                <div class="scroll-animate">
+                    <p class="text-4xl md:text-5xl font-bold mb-2">25%</p>
+                    <p class="text-white/80">More Closed Deals</p>
+                </div>
+                <div class="scroll-animate">
+                    <p class="text-4xl md:text-5xl font-bold mb-2">200+</p>
+                    <p class="text-white/80">SQLs Per Year</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Grid -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-animate">
+                <h2 class="text-4xl md:text-5xl font-bold text-belkins-dark mb-4">
+                    Specialized Solutions for Every Industry
+                </h2>
+                <p class="text-xl text-belkins-gray max-w-3xl mx-auto">
+                    We've helped businesses across diverse sectors achieve their growth goals with customized lead generation strategies.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Finance -->
+                <div class="industry-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="industry-icon w-16 h-16 bg-green-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-belkins-dark mb-3">Finance & Banking</h3>
+                    <p class="text-belkins-gray mb-6">Navigate the complex financial services landscape with compliant outreach strategies. We help fintech, banks, and investment firms reach CFOs and financial decision-makers.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Fintech solutions
+                        </li>
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Payment processing
+                        </li>
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Wealth management
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-flex items-center text-[#4EA6FE] font-medium hover:underline">
+                        Learn more
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- SaaS -->
+                <div class="industry-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="industry-icon w-16 h-16 bg-cyan-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-belkins-dark mb-3">SaaS</h3>
+                    <p class="text-belkins-gray mb-6">Accelerate your SaaS growth with targeted outreach to potential users and enterprise clients. We understand the subscription model and help you reduce CAC.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            B2B software platforms
+                        </li>
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Enterprise solutions
+                        </li>
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Vertical SaaS products
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-flex items-center text-[#4EA6FE] font-medium hover:underline">
+                        Learn more
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Healthcare -->
+                <div class="industry-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="industry-icon w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-belkins-dark mb-3">Healthcare</h3>
+                    <p class="text-belkins-gray mb-6">Navigate the healthcare industry with HIPAA-compliant outreach strategies. We connect medical technology and healthcare service providers with the right decision-makers.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Medical device companies
+                        </li>
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Healthcare IT solutions
+                        </li>
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Telemedicine platforms
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-flex items-center text-[#4EA6FE] font-medium hover:underline">
+                        Learn more
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Consulting -->
+                <div class="industry-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="industry-icon w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-belkins-dark mb-3">Consulting</h3>
+                    <p class="text-belkins-gray mb-6">Grow your consulting practice with a consistent flow of qualified prospects. We help consultants and advisory firms connect with businesses seeking expertise.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Management consulting
+                        </li>
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Strategy advisory
+                        </li>
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Technology consulting
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-flex items-center text-[#4EA6FE] font-medium hover:underline">
+                        Learn more
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Recruitment & Staffing -->
+                <div class="industry-card scroll-animate bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="industry-icon w-16 h-16 bg-violet-50 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-belkins-dark mb-3">Recruitment & Staffing</h3>
+                    <p class="text-belkins-gray mb-6">Connect with HR directors and hiring managers actively seeking staffing solutions. We help recruitment agencies find companies with immediate hiring needs.</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Executive search firms
+                        </li>
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Technical staffing agencies
+                        </li>
+                        <li class="flex items-center text-sm text-belkins-gray">
+                            <svg class="w-5 h-5 text-[#4EA6FE] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            HR technology providers
+                        </li>
+                    </ul>
+                    <a href="#" class="inline-flex items-center text-[#4EA6FE] font-medium hover:underline">
+                        Learn more
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-[#4EA6FE] to-[#78BBFA]">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+                Don't See Your Industry?
+            </h2>
+            <p class="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
+                We've worked with 50+ industries and counting. Our team can craft a custom lead generation strategy tailored to your specific market and audience.
+            </p>
+            <button onclick="openBookingModal()" class="inline-flex items-center px-8 py-4 bg-white text-[#4EA6FE] font-semibold rounded-full text-lg hover:shadow-xl hover:shadow-white/20 transform hover:-translate-y-1 transition-all duration-300">
+                Let's Talk About Your Industry
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+                <div class="col-span-2 md:col-span-1">
+                    <a href="index.html" class="flex items-center mb-6">
+                        <img src="assets/logo/bpohivelogo.png" alt="BPO Hive Logo" class="h-10 w-auto">
+                    </a>
+                    <p class="text-belkins-gray mb-2">contact@bpohive.com</p>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-belkins-orange hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-belkins-dark mb-4">Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-belkins-gray hover:text-belkins-orange transition-colors">About Us</a></li>
+                        <li><a href="case-studies.html" class="text-belkins-gray hover:text-belkins-orange transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="text-belkins-gray hover:text-belkins-orange transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-belkins-dark mb-4">Industries</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-belkins-gray hover:text-belkins-orange transition-colors">Finance</a></li>
+                        <li><a href="#" class="text-belkins-gray hover:text-belkins-orange transition-colors">SaaS</a></li>
+                        <li><a href="#" class="text-belkins-gray hover:text-belkins-orange transition-colors">Healthcare</a></li>
+                        <li><a href="#" class="text-belkins-gray hover:text-belkins-orange transition-colors">Consulting</a></li>
+                        <li><a href="#" class="text-belkins-gray hover:text-belkins-orange transition-colors">Recruitment</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-belkins-dark mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-belkins-gray hover:text-belkins-orange transition-colors">Lead Generation</a></li>
+                        <li><a href="#" class="text-belkins-gray hover:text-belkins-orange transition-colors">Appointment Setting</a></li>
+                        <li><a href="#" class="text-belkins-gray hover:text-belkins-orange transition-colors">Cold Email</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-belkins-dark mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li><button onclick="openBookingModal()" class="btn-primary inline-flex items-center px-4 py-2 bg-belkins-orange text-white text-sm font-semibold rounded-full">Book a call</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-belkins-gray text-sm mb-4 md:mb-0">© 2026 BPO Hive. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-4 text-sm">
+                    <a href="#" class="text-belkins-gray hover:text-belkins-orange transition-colors">Terms of Use</a>
+                    <a href="#" class="text-belkins-gray hover:text-belkins-orange transition-colors">Privacy policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                // Add mobile menu logic here
+            });
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+
+</html>
