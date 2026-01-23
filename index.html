@@ -4,7 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BPO Hive - B2B Lead Generation Agency</title>
+    <title>BPO Hive - B2B Lead Generation Agency | Appointment Setting & Cold Outreach</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="BPO Hive is a leading B2B lead generation agency specializing in appointment setting, cold calling, cold email outreach, and LinkedIn lead generation. Scale your sales pipeline with our expert team.">
+    <meta name="keywords" content="B2B lead generation, appointment setting, cold calling, cold email outreach, LinkedIn lead generation, sales development, BPO services">
+    <meta name="author" content="BPO Hive">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bpohive.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bpohive.com/">
+    <meta property="og:title" content="BPO Hive - B2B Lead Generation Agency">
+    <meta property="og:description" content="Scale your sales pipeline with expert B2B lead generation services. Appointment setting, cold calling, email outreach & more.">
+    <meta property="og:image" content="https://bpohive.com/assets/logo/bpohivelogo.png">
+    <meta property="og:site_name" content="BPO Hive">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://bpohive.com/">
+    <meta name="twitter:title" content="BPO Hive - B2B Lead Generation Agency">
+    <meta name="twitter:description" content="Scale your sales pipeline with expert B2B lead generation services. Appointment setting, cold calling, email outreach & more.">
+    <meta name="twitter:image" content="https://bpohive.com/assets/logo/bpohivelogo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/bpohivelogo.png">
+    <link rel="apple-touch-icon" href="assets/logo/bpohivelogo.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -338,168 +365,17 @@
         <div class="absolute inset-0 overflow-y-auto py-8 px-4">
             <div class="min-h-full flex items-center justify-center">
                 <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl mx-auto overflow-hidden animate-fadeInUp">
-                    <!-- Header with gradient -->
-                    <div class="bg-gradient-to-r from-[#4EA6FE] to-[#78BBFA] px-8 py-10 text-center relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                        <div class="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
-                        <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                        </button>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-2 relative z-10">Book Your Discovery Call Now!</h2>
-                        <p class="text-white/80 relative z-10">Let's discuss how we can grow your pipeline</p>
-                    </div>
+                    <!-- Close Button -->
+                    <button onclick="closeBookingModal()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors">
+                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
                     
-                    <!-- Form -->
-                    <form class="p-8 space-y-6" onsubmit="handleFormSubmit(event)">
-                        <!-- Name Fields -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Name<span class="text-red-500">*</span></label>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <input type="text" name="firstName" placeholder="First Name" required
-                                        class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all hover:border-gray-300">
-                                </div>
-                                <div>
-                                    <input type="text" name="lastName" placeholder="Last Name" required
-                                        class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all hover:border-gray-300">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Company Website -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Company Website<span class="text-red-500">*</span></label>
-                            <input type="url" name="website" placeholder="https://yourcompany.com" required
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all hover:border-gray-300">
-                        </div>
-                        
-                        <!-- Work Email -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Work Email<span class="text-red-500">*</span></label>
-                            <input type="email" name="email" placeholder="example@example.com" required
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all hover:border-gray-300">
-                        </div>
-                        
-                        <!-- Job Title -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Job Title<span class="text-red-500">*</span></label>
-                            <input type="text" name="jobTitle" placeholder="e.g. Marketing Director" required
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all hover:border-gray-300">
-                        </div>
-                        
-                        <!-- Country -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Country<span class="text-red-500">*</span></label>
-                            <select name="country" required
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all hover:border-gray-300 bg-white appearance-none cursor-pointer"
-                                style="background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22none%22 viewBox=%220 0 24 24%22 stroke=%22%236B7280%22%3E%3Cpath stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%222%22 d=%22M19 9l-7 7-7-7%22/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem;">
-                                <option value="">Please Select Country</option>
-                                <option value="US">United States</option>
-                                <option value="UK">United Kingdom</option>
-                                <option value="CA">Canada</option>
-                                <option value="AU">Australia</option>
-                                <option value="DE">Germany</option>
-                                <option value="FR">France</option>
-                                <option value="NL">Netherlands</option>
-                                <option value="AE">United Arab Emirates</option>
-                                <option value="SA">Saudi Arabia</option>
-                                <option value="EG">Egypt</option>
-                                <option value="IN">India</option>
-                                <option value="SG">Singapore</option>
-                                <option value="OTHER">Other</option>
-                            </select>
-                        </div>
-                        
-                        <!-- Phone Number -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number<span class="text-red-500">*</span></label>
-                            <input type="tel" name="phone" placeholder="+1 (555) 000-0000" required
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all hover:border-gray-300">
-                        </div>
-                        
-                        <!-- Services -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">What Services Are You Looking For?<span class="text-red-500">*</span></label>
-                            <div class="grid grid-cols-2 gap-3">
-                                <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-xl hover:border-[#4EA6FE] cursor-pointer transition-colors">
-                                    <input type="checkbox" name="services" value="appointment-setting" class="w-5 h-5 text-[#4EA6FE] rounded border-gray-300 focus:ring-[#4EA6FE]">
-                                    <span class="text-sm text-gray-700">Appointment Setting</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-xl hover:border-[#4EA6FE] cursor-pointer transition-colors">
-                                    <input type="checkbox" name="services" value="lead-generation" class="w-5 h-5 text-[#4EA6FE] rounded border-gray-300 focus:ring-[#4EA6FE]">
-                                    <span class="text-sm text-gray-700">Lead Generation</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-xl hover:border-[#4EA6FE] cursor-pointer transition-colors">
-                                    <input type="checkbox" name="services" value="cold-email" class="w-5 h-5 text-[#4EA6FE] rounded border-gray-300 focus:ring-[#4EA6FE]">
-                                    <span class="text-sm text-gray-700">Cold Email Outreach</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-xl hover:border-[#4EA6FE] cursor-pointer transition-colors">
-                                    <input type="checkbox" name="services" value="cold-calling" class="w-5 h-5 text-[#4EA6FE] rounded border-gray-300 focus:ring-[#4EA6FE]">
-                                    <span class="text-sm text-gray-700">Cold Calling</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-xl hover:border-[#4EA6FE] cursor-pointer transition-colors">
-                                    <input type="checkbox" name="services" value="linkedin" class="w-5 h-5 text-[#4EA6FE] rounded border-gray-300 focus:ring-[#4EA6FE]">
-                                    <span class="text-sm text-gray-700">LinkedIn Marketing</span>
-                                </label>
-                                <label class="flex items-center space-x-3 p-3 border border-gray-200 rounded-xl hover:border-[#4EA6FE] cursor-pointer transition-colors">
-                                    <input type="checkbox" name="services" value="other" class="w-5 h-5 text-[#4EA6FE] rounded border-gray-300 focus:ring-[#4EA6FE]">
-                                    <span class="text-sm text-gray-700">Other</span>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <!-- Budget -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Please select your estimated monthly budget for the project.<span class="text-red-500">*</span></label>
-                            <select name="budget" required
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all hover:border-gray-300 bg-white appearance-none cursor-pointer"
-                                style="background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22none%22 viewBox=%220 0 24 24%22 stroke=%22%236B7280%22%3E%3Cpath stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%222%22 d=%22M19 9l-7 7-7-7%22/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem;">
-                                <option value="">Please Select</option>
-                                <option value="1000-3000">$1,000 - $3,000</option>
-                                <option value="3000-5000">$3,000 - $5,000</option>
-                                <option value="5000-10000">$5,000 - $10,000</option>
-                                <option value="10000-25000">$10,000 - $25,000</option>
-                                <option value="25000+">$25,000+</option>
-                            </select>
-                        </div>
-                        
-                        <!-- Tell us more -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Tell us more about what you need!<span class="text-red-500">*</span></label>
-                            <textarea name="message" rows="4" placeholder="Describe your project, goals, and any specific requirements..." required
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all hover:border-gray-300 resize-none"></textarea>
-                        </div>
-                        
-                        <!-- How did you hear -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">How did you hear about us?<span class="text-red-500">*</span></label>
-                            <select name="source" required
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#4EA6FE] focus:border-transparent outline-none transition-all hover:border-gray-300 bg-white appearance-none cursor-pointer"
-                                style="background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22none%22 viewBox=%220 0 24 24%22 stroke=%22%236B7280%22%3E%3Cpath stroke-linecap=%22round%22 stroke-linejoin=%22round%22 stroke-width=%222%22 d=%22M19 9l-7 7-7-7%22/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.25rem;">
-                                <option value="">Please Select</option>
-                                <option value="google">Google Search</option>
-                                <option value="linkedin">LinkedIn</option>
-                                <option value="upwork">Upwork</option>
-                                <option value="clutch">Clutch</option>
-                                <option value="referral">Referral</option>
-                                <option value="social">Social Media</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        
-                        <!-- Privacy Policy -->
-                        <div class="text-center">
-                            <a href="privacy-policy.html" class="text-[#4EA6FE] hover:underline text-sm">View our Privacy Policy</a>
-                        </div>
-                        
-                        <!-- Submit Button -->
-                        <button type="submit"
-                            class="w-full py-4 bg-gradient-to-r from-[#4EA6FE] to-[#78BBFA] text-white font-bold text-lg rounded-xl hover:shadow-lg hover:shadow-[#4EA6FE]/30 transform hover:-translate-y-0.5 transition-all duration-300">
-                            Schedule my Consultation
-                        </button>
-                    </form>
+                    <!-- JotForm Embed -->
+                    <div class="jotform-container p-4">
+                        <script type="text/javascript" src="https://form.jotform.com/jsform/233154560347050"></script>
+                    </div>
                 </div>
             </div>
         </div>
@@ -776,11 +652,11 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
             <div class="px-4 py-4 space-y-3">
-                <a href="#" class="block py-2 text-belkins-dark">Services & solutions</a>
-                <a href="#" class="block py-2 text-belkins-dark">Industries</a>
-                <a href="#" class="block py-2 text-belkins-dark">Case studies</a>
-                <a href="#" class="block py-2 text-belkins-dark">About</a>
-                <a href="#" class="block py-2 text-belkins-dark">Pricing</a>
+                <a href="services/appointment-setting.html" class="block py-2 text-belkins-dark">Services & solutions</a>
+                <a href="industries.html" class="block py-2 text-belkins-dark">Industries</a>
+                <a href="case-studies.html" class="block py-2 text-belkins-dark">Case studies</a>
+                <a href="about.html" class="block py-2 text-belkins-dark">About</a>
+                <a href="pricing.html" class="block py-2 text-belkins-dark">Pricing</a>
                 <button onclick="openBookingModal()" class="block w-full py-3 mt-4 text-center bg-belkins-orange text-white rounded-full">Book a
                     call</button>
             </div>
@@ -788,7 +664,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 overflow-hidden bg-belkins-light">
+    <section class="relative pt-32 pb-20 overflow-hidden bg-gray-50">
         <!-- Background decorations -->
         <div class="blob blob-orange w-80 h-80 -top-20 -left-20 animate-float"></div>
         <div class="blob blob-orange w-64 h-64 top-40 -right-20 animate-float delay-300" style="animation-delay: 2s;">
@@ -1686,7 +1562,7 @@
             <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
                 <!-- Logo and contact -->
                 <div class="col-span-2 md:col-span-1">
-                    <a href="#" class="flex items-center mb-6">
+                    <a href="index.html" class="flex items-center mb-6">
                         <img src="assets/logo/bpohivelogo.png" alt="BPO Hive Logo" class="h-10 w-auto">
                     </a>
                     <p class="text-gray-400 mb-2">info@bpohive.com</p>
