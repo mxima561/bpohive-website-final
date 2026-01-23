@@ -362,19 +362,19 @@
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeBookingModal()"></div>
         
         <!-- Modal Content -->
-        <div class="absolute inset-0 overflow-y-auto py-8 px-4">
+        <div class="absolute inset-0 overflow-y-auto py-4 px-4">
             <div class="min-h-full flex items-center justify-center">
-                <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl mx-auto overflow-hidden animate-fadeInUp">
+                <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-xl mx-auto overflow-hidden">
                     <!-- Close Button -->
-                    <button onclick="closeBookingModal()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors">
-                        <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button onclick="closeBookingModal()" class="absolute top-3 right-3 z-20 w-8 h-8 bg-white/90 hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors shadow-md">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>
                     
                     <!-- JotForm Embed -->
-                    <div class="jotform-container p-4">
-                        <script type="text/javascript" src="https://form.jotform.com/jsform/233154560347050"></script>
+                    <div id="jotform-container" class="w-full" style="min-height: 600px;">
+                        <!-- Iframe will be loaded when modal opens -->
                     </div>
                 </div>
             </div>
@@ -382,22 +382,38 @@
     </div>
     
     <script>
+        let jotformLoaded = false;
+        
         function openBookingModal() {
             document.getElementById('booking-modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+            
+            // Load JotForm iframe only when modal opens (lazy load)
+            if (!jotformLoaded) {
+                const container = document.getElementById('jotform-container');
+                container.innerHTML = '<iframe id="JotFormIFrame-233154560347050" title="Book a Call" onload="window.parent.scrollTo(0,0)" allowtransparency="true" allow="geolocation; microphone; camera; fullscreen" src="https://form.jotform.com/233154560347050" frameborder="0" style="min-width:100%; max-width:100%; height:600px; border:none;" scrolling="yes"></iframe>';
+                jotformLoaded = true;
+                
+                // Handle iframe resize
+                if (window.addEventListener) {
+                    window.addEventListener("message", function(e) {
+                        if (e.data && typeof e.data === "string") {
+                            var args = e.data.split(":");
+                            if (args.length > 2 && args[0] === "setHeight") {
+                                var iframe = document.getElementById("JotFormIFrame-" + args[1]);
+                                if (iframe) {
+                                    iframe.style.height = args[2] + "px";
+                                }
+                            }
+                        }
+                    }, false);
+                }
+            }
         }
         
         function closeBookingModal() {
             document.getElementById('booking-modal').classList.add('hidden');
             document.body.style.overflow = '';
-        }
-        
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            // Here you would typically send the form data to your backend
-            alert('Thank you! We will contact you shortly to schedule your consultation.');
-            closeBookingModal();
-            event.target.reset();
         }
         
         // Close modal on Escape key
