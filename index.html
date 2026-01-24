@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google Analytics 4 - Replace G-XXXXXXXXXX with your Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BPO Hive - B2B Lead Generation Agency | Appointment Setting & Cold Outreach</title>
@@ -32,9 +41,32 @@
         content="Scale your sales pipeline with expert B2B lead generation services. Appointment setting, cold calling, email outreach & more.">
     <meta name="twitter:image" content="https://bpohive.com/assets/logo/bpohivelogo.png">
 
+    <!-- Structured Data - Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "BPO Hive",
+        "url": "https://bpohive.com",
+        "logo": "https://bpohive.com/assets/logo/bpohivelogo.png",
+        "description": "B2B lead generation agency specializing in appointment setting, cold calling, cold email outreach, and LinkedIn lead generation.",
+        "email": "info@bpohive.com",
+        "sameAs": [
+            "https://www.linkedin.com/company/bpohive",
+            "https://www.facebook.com/bpohive1/"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "info@bpohive.com",
+            "contactType": "sales"
+        },
+        "areaServed": "Worldwide"
+    }
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon.png">
-    <link rel="apple-touch-icon" href="assets/logo/favicon.png">
+    <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,6 +114,19 @@
     <style>
         * {
             font-family: 'Inter', sans-serif;
+        }
+
+        /* Screen Reader Only - Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
         /* Animations */
@@ -396,18 +441,23 @@
 
 <body class="bg-white">
     <!-- Booking Modal -->
-    <div id="booking-modal" class="fixed inset-0 z-[100] hidden">
+    <div id="booking-modal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <!-- Backdrop -->
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeBookingModal()"></div>
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeBookingModal()" aria-hidden="true"></div>
 
         <!-- Modal Content -->
         <div class="absolute inset-0 overflow-y-auto py-4 px-4">
             <div class="min-h-full flex items-center justify-center">
                 <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-xl mx-auto overflow-hidden">
+                    <!-- Screen Reader Title -->
+                    <h2 id="modal-title" class="sr-only">Book a Call with BPO Hive</h2>
+
                     <!-- Close Button -->
                     <button onclick="closeBookingModal()"
-                        class="absolute top-3 right-3 z-20 w-8 h-8 bg-white/90 hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors shadow-md">
-                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        class="absolute top-3 right-3 z-20 w-8 h-8 bg-white/90 hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors shadow-md"
+                        aria-label="Close booking dialog"
+                        type="button">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -755,21 +805,21 @@
                 class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center max-w-4xl mx-auto mb-12">
                 <a href="https://www.upwork.com" target="_blank" rel="noopener noreferrer"
                     class="logo-hover flex items-center justify-center p-4">
-                    <img src="assets/logo/trust-badges/Upwork Logo.png" alt="Top Rated Upwork" class="h-16 object-contain">
+                    <img src="assets/logo/trust-badges/Upwork-Logo.png" alt="Top Rated Upwork" class="h-16 object-contain" loading="lazy">
                 </a>
                 <a href="https://clutch.co" target="_blank" rel="noopener noreferrer"
                     class="logo-hover flex items-center justify-center p-4">
-                    <img src="assets/logo/trust-badges/Clutch Logo (1).png" alt="Clutch" class="h-12 object-contain">
+                    <img src="assets/logo/trust-badges/Clutch-Logo.png" alt="Clutch" class="h-12 object-contain" loading="lazy">
                 </a>
                 <a href="https://www.trustpilot.com/review/bpohive.com" target="_blank" rel="noopener noreferrer"
                     class="logo-hover flex items-center justify-center p-4">
                     <img src="assets/logo/trust-badges/trustpilotlogo2.webp" alt="Trustpilot"
-                        class="h-14 object-contain">
+                        class="h-14 object-contain" loading="lazy">
                 </a>
                 <a href="https://www.salesforge.ai/directory/agencies/bpo-hive" target="_blank"
                     rel="noopener noreferrer" class="logo-hover flex items-center justify-center p-4">
                     <img src="assets/logo/trust-badges/salesforge_Logo_fe56ba5eaa.svg" alt="Salesforge"
-                        class="h-8 object-contain">
+                        class="h-8 object-contain" loading="lazy">
                 </a>
             </div>
 
@@ -781,7 +831,7 @@
                     <a href="https://usanews.com/newsroom/bpo-hive-the-outsourcing-partner-delivering-real-results"
                         target="_blank" rel="noopener noreferrer"
                         class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                        <img src="assets/logo/trust-badges/USA-News-2048x1024.png" alt="USA News"
+                        <img src="assets/logo/trust-badges/USA-News.png" alt="USA News" loading="lazy"
                             class="h-16 object-contain mb-3">
                         <span class="text-xs text-[#4EA6FE] font-medium">Read article →</span>
                     </a>
@@ -790,7 +840,7 @@
                         target="_blank" rel="noopener noreferrer"
                         class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                         <img src="assets/logo/trust-badges/evergreen.webp" alt="Evergreen Award"
-                            class="h-16 object-contain mb-3">
+                            class="h-16 object-contain mb-3" loading="lazy">
                         <span class="text-xs text-[#4EA6FE] font-medium">View award →</span>
                     </a>
                     <!-- Identity Magazine -->
@@ -798,14 +848,14 @@
                         target="_blank" rel="noopener noreferrer"
                         class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                         <img src="assets/logo/trust-badges/identity3.webp" alt="Identity Magazine"
-                            class="h-12 object-contain mb-3">
+                            class="h-12 object-contain mb-3" loading="lazy">
                         <span class="text-xs text-[#4EA6FE] font-medium">Read interview →</span>
                     </a>
                     <!-- The Manifest -->
                     <a href="https://themanifest.com/company/bpo-hive" target="_blank" rel="noopener noreferrer"
                         class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                         <img src="assets/logo/trust-badges/themanifestlogo.webp" alt="The Manifest"
-                            class="h-12 object-contain mb-3">
+                            class="h-12 object-contain mb-3" loading="lazy">
                         <span class="text-xs text-[#4EA6FE] font-medium">View profile →</span>
                     </a>
                 </div>
@@ -1084,7 +1134,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/upwork-icon.svg" alt="Upwork"
-                                            class="w-6 h-6">
+                                            class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Upwork Client</p>
@@ -1105,7 +1155,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/upwork-icon.svg" alt="Upwork"
-                                            class="w-6 h-6">
+                                            class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Upwork Client</p>
@@ -1126,7 +1176,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/upwork-icon.svg" alt="Upwork"
-                                            class="w-6 h-6">
+                                            class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Upwork Client</p>
@@ -1146,7 +1196,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/upwork-icon.svg" alt="Upwork"
-                                            class="w-6 h-6">
+                                            class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Upwork Client</p>
@@ -1166,7 +1216,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/upwork-icon.svg" alt="Upwork"
-                                            class="w-6 h-6">
+                                            class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Upwork Client</p>
@@ -1187,7 +1237,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/upwork-icon.svg" alt="Upwork"
-                                            class="w-6 h-6">
+                                            class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Upwork Client</p>
@@ -1207,7 +1257,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/non-upwork-review-logo.webp"
-                                            alt="Review" class="w-6 h-6">
+                                            alt="Review" class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Anonymous COO</p>
@@ -1227,7 +1277,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/non-upwork-review-logo.webp"
-                                            alt="Review" class="w-6 h-6">
+                                            alt="Review" class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Michael Ford</p>
@@ -1247,7 +1297,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/non-upwork-review-logo.webp"
-                                            alt="Review" class="w-6 h-6">
+                                            alt="Review" class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Shawn Samuel</p>
@@ -1267,7 +1317,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/non-upwork-review-logo.webp"
-                                            alt="Review" class="w-6 h-6">
+                                            alt="Review" class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Summer Henderson</p>
@@ -1288,7 +1338,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/non-upwork-review-logo.webp"
-                                            alt="Review" class="w-6 h-6">
+                                            alt="Review" class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">James Palmer</p>
@@ -1308,7 +1358,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/non-upwork-review-logo.webp"
-                                            alt="Review" class="w-6 h-6">
+                                            alt="Review" class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Sarah Wessel</p>
@@ -1328,7 +1378,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/non-upwork-review-logo.webp"
-                                            alt="Review" class="w-6 h-6">
+                                            alt="Review" class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Charles Rattray</p>
@@ -1348,7 +1398,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/non-upwork-review-logo.webp"
-                                            alt="Review" class="w-6 h-6">
+                                            alt="Review" class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Anonymous Owner</p>
@@ -1368,7 +1418,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/non-upwork-review-logo.webp"
-                                            alt="Review" class="w-6 h-6">
+                                            alt="Review" class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Anonymous CEO</p>
@@ -1388,7 +1438,7 @@
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
                                         <img src="assets/reviews/review-avatars/non-upwork-review-logo.webp"
-                                            alt="Review" class="w-6 h-6">
+                                            alt="Review" class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
                                         <p class="font-bold text-sm text-gray-900">Chris Frazier</p>
@@ -1792,7 +1842,7 @@
                 <!-- Logo and contact -->
                 <div class="col-span-2 md:col-span-1">
                     <a href="index.html" class="flex items-center mb-6">
-                        <img src="assets/logo/bpohivelogo.png" alt="BPO Hive Logo" class="h-10 w-auto">
+                        <img src="assets/logo/bpohivelogo.png" alt="BPO Hive Logo" class="h-10 w-auto" loading="lazy">
                     </a>
                     <p class="text-gray-400 mb-2">info@bpohive.com</p>
                     <div class="flex space-x-4 mb-6">
