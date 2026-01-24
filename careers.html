@@ -95,6 +95,20 @@
             background: #4EA6FE;
             color: white;
         }
+        #apply-modal {
+            animation: fadeIn 0.2s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #apply-modal > div:last-child {
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -133,167 +147,232 @@
         </div>
     </section>
 
+    <!-- Application Modal -->
+    <div id="apply-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeApplyModal()"></div>
+        <div class="absolute inset-4 md:inset-10 lg:inset-20 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h3 class="text-xl font-bold text-bpo-dark">Apply for Position</h3>
+                <button onclick="closeApplyModal()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-auto">
+                <iframe
+                    id="JotFormIFrame-242284005259555"
+                    title="Job Application"
+                    allowtransparency="true"
+                    allow="geolocation; microphone; camera; fullscreen"
+                    src="https://form.jotform.com/242284005259555"
+                    frameborder="0"
+                    style="width:100%;height:100%;min-height:600px;border:none;"
+                    scrolling="yes"
+                ></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- Open Positions Section -->
     <section class="py-20 bg-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-animate">
                 <h2 class="text-4xl font-bold text-bpo-dark mb-4">Open Positions</h2>
-                <p class="text-xl text-bpo-gray"><span id="job-count" class="text-bpo-blue font-semibold">Loading...</span> available</p>
+                <p class="text-xl text-bpo-gray"><span class="text-bpo-blue font-semibold">5 positions</span> available</p>
             </div>
 
-            <!-- Jobs Container - Will be populated by JavaScript -->
-            <div id="jobs-container" class="space-y-6">
-                <!-- Loading State -->
-                <div id="jobs-loading" class="text-center py-12">
-                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-bpo-blue border-t-transparent"></div>
-                    <p class="mt-4 text-bpo-gray">Loading positions...</p>
-                </div>
-            </div>
-
-            <!-- No Jobs Message (hidden by default) -->
-            <div id="no-jobs" class="hidden text-center py-12">
-                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-bold text-bpo-dark mb-2">No open positions right now</h3>
-                <p class="text-bpo-gray">Check back soon or connect with us on LinkedIn for updates!</p>
-            </div>
-
-            <!-- Error Message (hidden by default) -->
-            <div id="jobs-error" class="hidden text-center py-12">
-                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-bold text-bpo-dark mb-2">Unable to load positions</h3>
-                <p class="text-bpo-gray">Please try again later or contact us directly at careers@bpohive.com</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Airtable Integration Script -->
-    <script>
-        // Airtable Configuration
-        // IMPORTANT: Replace with your Airtable API key or use a backend proxy for production
-        const AIRTABLE_API_KEY = 'YOUR_AIRTABLE_API_KEY';
-        const AIRTABLE_BASE_ID = 'appbY1osDgEfsgYJI';
-        const AIRTABLE_TABLE_ID = 'tblxpbDZFj0bwqm30';
-
-        // Department color mapping
-        const departmentColors = {
-            'Sales': { bg: 'bg-blue-50', text: 'text-bpo-blue' },
-            'Marketing': { bg: 'bg-pink-50', text: 'text-pink-600' },
-            'Operations': { bg: 'bg-purple-50', text: 'text-purple-600' },
-            'Engineering': { bg: 'bg-indigo-50', text: 'text-indigo-600' },
-            'HR': { bg: 'bg-yellow-50', text: 'text-yellow-600' },
-            'Customer Support': { bg: 'bg-green-50', text: 'text-green-600' },
-            'Management': { bg: 'bg-orange-50', text: 'text-orange-600' },
-            'default': { bg: 'bg-gray-100', text: 'text-gray-600' }
-        };
-
-        // Create job card HTML
-        function createJobCard(job) {
-            const fields = job.fields;
-            const title = fields.Title || 'Untitled Position';
-            const description = fields.Description || '';
-            const location = fields.Location || 'Remote';
-            const type = fields.Type || 'Full-time';
-            const department = fields.Department || '';
-            const email = fields.Email || 'careers@bpohive.com';
-
-            const deptColor = departmentColors[department] || departmentColors['default'];
-            const isRemote = location.toLowerCase().includes('remote');
-
-            const locationIcon = isRemote 
-                ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>`
-                : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>`;
-
-            return `
-                <div class="job-card scroll-animate visible bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <!-- Jobs Container -->
+            <div class="space-y-6">
+                <!-- Sales Development Representative -->
+                <div class="job-card scroll-animate bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div class="flex-1">
-                            <h3 class="text-xl font-bold text-bpo-dark mb-2">${title}</h3>
-                            <p class="text-bpo-gray mb-4">${description}</p>
+                            <h3 class="text-xl font-bold text-bpo-dark mb-2">Sales Development Representative (SDR)</h3>
+                            <p class="text-bpo-gray mb-4">Drive B2B sales growth through strategic outbound outreach. Qualify leads, book meetings, and build pipeline for our clients.</p>
                             <div class="flex flex-wrap gap-2">
                                 <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        ${locationIcon}
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
-                                    ${location}
+                                    Remote
                                 </span>
                                 <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
                                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
-                                    ${type}
+                                    Full-time
                                 </span>
-                                ${department ? `<span class="tag px-3 py-1 ${deptColor.bg} ${deptColor.text} text-sm rounded-full font-medium">${department}</span>` : ''}
+                                <span class="tag px-3 py-1 bg-blue-50 text-bpo-blue text-sm rounded-full font-medium">Sales</span>
                             </div>
                         </div>
                         <div class="md:ml-6">
-                            <a href="mailto:${email}?subject=Application: ${encodeURIComponent(title)}" class="btn-primary inline-flex items-center px-6 py-3 text-white font-medium rounded-full">
+                            <button onclick="openApplyModal()" class="btn-primary inline-flex items-center px-6 py-3 text-white font-medium rounded-full">
                                 Apply Now
                                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                                 </svg>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
-            `;
+
+                <!-- Lead Research Specialist -->
+                <div class="job-card scroll-animate bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-bpo-dark mb-2">Lead Research Specialist</h3>
+                            <p class="text-bpo-gray mb-4">Research and identify high-quality B2B prospects using LinkedIn, databases, and various tools. Build targeted lead lists for sales campaigns.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Remote
+                                </span>
+                                <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Full-time
+                                </span>
+                                <span class="tag px-3 py-1 bg-purple-50 text-purple-600 text-sm rounded-full font-medium">Operations</span>
+                            </div>
+                        </div>
+                        <div class="md:ml-6">
+                            <button onclick="openApplyModal()" class="btn-primary inline-flex items-center px-6 py-3 text-white font-medium rounded-full">
+                                Apply Now
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appointment Setter -->
+                <div class="job-card scroll-animate bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-bpo-dark mb-2">Appointment Setter</h3>
+                            <p class="text-bpo-gray mb-4">Schedule qualified meetings for B2B sales teams through multi-channel outreach. Strong communication and persuasion skills required.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Remote
+                                </span>
+                                <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Full-time
+                                </span>
+                                <span class="tag px-3 py-1 bg-blue-50 text-bpo-blue text-sm rounded-full font-medium">Sales</span>
+                            </div>
+                        </div>
+                        <div class="md:ml-6">
+                            <button onclick="openApplyModal()" class="btn-primary inline-flex items-center px-6 py-3 text-white font-medium rounded-full">
+                                Apply Now
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cold Calling Specialist -->
+                <div class="job-card scroll-animate bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-bpo-dark mb-2">Cold Calling Specialist</h3>
+                            <p class="text-bpo-gray mb-4">Execute high-volume outbound calling campaigns. Engage decision-makers, handle objections, and generate qualified opportunities.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Remote
+                                </span>
+                                <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Full-time
+                                </span>
+                                <span class="tag px-3 py-1 bg-blue-50 text-bpo-blue text-sm rounded-full font-medium">Sales</span>
+                            </div>
+                        </div>
+                        <div class="md:ml-6">
+                            <button onclick="openApplyModal()" class="btn-primary inline-flex items-center px-6 py-3 text-white font-medium rounded-full">
+                                Apply Now
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Outreach Specialist -->
+                <div class="job-card scroll-animate bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-bpo-dark mb-2">Email Outreach Specialist</h3>
+                            <p class="text-bpo-gray mb-4">Craft and execute personalized cold email campaigns. A/B test messaging, optimize deliverability, and drive engagement with prospects.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Remote
+                                </span>
+                                <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Full-time
+                                </span>
+                                <span class="tag px-3 py-1 bg-pink-50 text-pink-600 text-sm rounded-full font-medium">Marketing</span>
+                            </div>
+                        </div>
+                        <div class="md:ml-6">
+                            <button onclick="openApplyModal()" class="btn-primary inline-flex items-center px-6 py-3 text-white font-medium rounded-full">
+                                Apply Now
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JotForm Script -->
+    <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
+    <script>
+        // Modal functions
+        function openApplyModal() {
+            document.getElementById('apply-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
-        // Fetch jobs from Airtable
-        async function fetchJobs() {
-            const container = document.getElementById('jobs-container');
-            const loading = document.getElementById('jobs-loading');
-            const noJobs = document.getElementById('no-jobs');
-            const errorDiv = document.getElementById('jobs-error');
-            const jobCount = document.getElementById('job-count');
-
-            try {
-                const response = await fetch(
-                    `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}?filterByFormula={Active}=TRUE()&sort[0][field]=Order&sort[0][direction]=asc`,
-                    {
-                        headers: {
-                            'Authorization': `Bearer ${AIRTABLE_API_KEY}`
-                        }
-                    }
-                );
-
-                if (!response.ok) {
-                    throw new Error('Failed to fetch jobs');
-                }
-
-                const data = await response.json();
-                const jobs = data.records || [];
-
-                // Hide loading
-                loading.classList.add('hidden');
-
-                if (jobs.length === 0) {
-                    // Show no jobs message
-                    noJobs.classList.remove('hidden');
-                    jobCount.textContent = '0 positions';
-                } else {
-                    // Render jobs
-                    container.innerHTML = jobs.map(createJobCard).join('');
-                    jobCount.textContent = `${jobs.length} position${jobs.length !== 1 ? 's' : ''}`;
-                }
-
-            } catch (error) {
-                console.error('Error fetching jobs:', error);
-                loading.classList.add('hidden');
-                errorDiv.classList.remove('hidden');
-                jobCount.textContent = 'Unable to load';
-            }
+        function closeApplyModal() {
+            document.getElementById('apply-modal').classList.add('hidden');
+            document.body.style.overflow = '';
         }
 
-        // Fetch jobs when page loads
-        document.addEventListener('DOMContentLoaded', fetchJobs);
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeApplyModal();
+        });
+
+        // Initialize JotForm
+        window.jotformEmbedHandler("iframe[id='JotFormIFrame-242284005259555']", "https://form.jotform.com/");
     </script>
 
     <!-- Don't See the Right Role Section -->
