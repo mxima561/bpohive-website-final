@@ -1,7 +1,20 @@
 # BPO Hive - .htaccess Configuration for WordPress Hosting
 
 # Custom 404 Error Page
-ErrorDocument 404 /404.html
+ErrorDocument 404 /404
+
+# Clean URLs - Remove .html extension
+RewriteEngine On
+
+# Redirect .html URLs to clean URLs (301 redirect)
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R=301]
+
+# Serve .html files for clean URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
 
 # Enable GZIP Compression
 <IfModule mod_deflate.c>
