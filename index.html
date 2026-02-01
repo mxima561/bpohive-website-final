@@ -68,49 +68,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon.png">
     <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/tailwind.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'belkins-orange': '#4EA6FE', // Darker blue as requested (replacing the primary orange)
-                        'belkins-dark': '#78BBFA', // Light blue as converted (replacing the dark text maybe? wait, need to check usage)
-                        // Actually, user said: "fonts of like BPOHive, or kind of like break it down with like the blue, so 7-8-B-B-F-A... and then add maybe a 4-E-A-6-F-E"
-                        // '78BBFA' is light blue. '4EA6FE' is a darker blue.
-                        // Let's map them to primary/accent logic.
-                        // Primary CTA/Highlights was orange -> New Blue #4EA6FE
-                        // Headings was Dark -> Let's keep a dark color for text readability or use the darker blue if user implies?
-                        // User said: "fonts of like BPOHive... break it down with like blue #78BBFA"
-                        // This might affect readability if ALL text is light blue.
-                        // Let's try:
-                        // Primary Brand Color: #4EA6FE (Darker Blue)
-                        // Secondary Brand Color: #78BBFA (Light Blue)
-                        // "Background of whole website white" -> #FFFFFF.
-                        // Existing 'belkins-light' was #F9FAFB. We should probably make section backgrounds white too.
-
-                        // Mapping:
-                        'belkins-orange': '#4EA6FE', // Primary action color (Buttons, highlights)
-                        'belkins-dark': '#1A1A1A',   // Keep text dark for readability, maybe use blue for headings specifically?
-                        // User said "fonts of like BPOHive ... with the blue #78BBFA". 
-                        // I'll apply that to the Logo and specific emphasized text.
-                        'belkins-gray': '#6B7280',
-                        'belkins-light': '#FFFFFF',  // Force backgrounds to white
-
-                        // Custom Palette
-                        'bpo-blue-light': '#78BBFA',
-                        'bpo-blue-dark': '#4EA6FE',
-                    },
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
     <style>
         * {
             font-family: 'Inter', sans-serif;
@@ -901,6 +862,16 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
         </div>
     </section>
 
+    <!-- CTA between sections -->
+    <section class="py-16 bg-white">
+        <div class="text-center">
+            <button onclick="openBookingModal()" class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-xl text-lg">
+                Book Your Free Consultation
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </button>
+        </div>
+    </section>
+
     <!-- What Issues Section (formerly Challenges) -->
     <section class="relative py-20 bg-white overflow-hidden">
         <!-- Background Splashes -->
@@ -916,10 +887,10 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 scroll-animate">
                 <h2 class="text-4xl md:text-5xl font-bold text-belkins-dark mb-4">
-                    What issues are you facing today?
+                    What's holding your sales back?
                 </h2>
                 <p class="text-xl text-belkins-gray max-w-3xl mx-auto">
-                    Data-driven insights so you can tackle the biggest issues
+                    Pinpoint the obstacles slowing your growth — and how to overcome them
                 </p>
             </div>
 
@@ -931,9 +902,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                 d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Revenue stagnation</h3>
-                    <p class="text-belkins-gray">Your revenue boost is lagging 2–3 times behind projections, and you're
-                        struggling to find enough qualified opportunities to close B2B deals.</p>
+                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Flat revenue growth</h3>
+                    <p class="text-belkins-gray">Your top-line numbers are falling 2–3x short of targets because there aren't enough qualified B2B opportunities entering the pipeline.</p>
                 </div>
 
                 <div class="challenge-card scroll-animate bg-white rounded-2xl p-6" style="animation-delay: 0.1s;">
@@ -943,9 +913,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Slow deal closure</h3>
-                    <p class="text-belkins-gray">Meeting sales quotas takes an unacceptably long time frame of 6–12
-                        months. Your goal is to boost lead quality to drive sales-ready prospects.</p>
+                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Lengthy sales cycles</h3>
+                    <p class="text-belkins-gray">Hitting quota drags on for 6–12 months because prospects entering the funnel aren't sales-ready, stretching every deal to its limit.</p>
                 </div>
 
                 <div class="challenge-card scroll-animate bg-white rounded-2xl p-6" style="animation-delay: 0.2s;">
@@ -955,9 +924,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                 d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Disconnected sales and marketing</h3>
-                    <p class="text-belkins-gray">Without shared goals and clear processes, marketing pushes leads that
-                        sales can't close, while sales feedback gets lost.</p>
+                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Sales & marketing misalignment</h3>
+                    <p class="text-belkins-gray">When teams operate in silos, marketing passes leads that sales can't convert — and valuable field insights never make it back.</p>
                 </div>
 
                 <div class="challenge-card scroll-animate bg-white rounded-2xl p-6" style="animation-delay: 0.3s;">
@@ -967,9 +935,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                 d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Internal constraints and bottlenecks</h3>
-                    <p class="text-belkins-gray">Overburdened with routine, your team struggles to optimize processes
-                        and innovate go-to-market strategies, resulting in missed sales KPIs.</p>
+                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Operational bottlenecks</h3>
+                    <p class="text-belkins-gray">Day-to-day tasks consume your team's bandwidth, leaving no room to refine go-to-market strategies or hit critical sales targets.</p>
                 </div>
 
                 <div class="challenge-card scroll-animate bg-white rounded-2xl p-6" style="animation-delay: 0.4s;">
@@ -979,9 +946,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                 d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Inconsistent lead quality</h3>
-                    <p class="text-belkins-gray">Despite investing in lead gen and experimenting with new tools, you're
-                        struggling to convert leads into qualified appointments.</p>
+                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Unreliable lead quality</h3>
+                    <p class="text-belkins-gray">You've poured budget into lead generation and tested multiple platforms, yet turning those leads into booked meetings remains a challenge.</p>
                 </div>
 
                 <div class="challenge-card scroll-animate bg-white rounded-2xl p-6" style="animation-delay: 0.5s;">
@@ -991,11 +957,20 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                 d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Frustrating experience with a past vendor</h3>
-                    <p class="text-belkins-gray">Previous B2B sales agencies have left you disappointed and skeptical
-                        about the potential of lead generation outsourcing.</p>
+                    <h3 class="text-xl font-bold text-belkins-dark mb-2">Burned by a previous agency</h3>
+                    <p class="text-belkins-gray">Past outsourcing partners delivered underwhelming results, making you hesitant to trust another team with your lead generation.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- CTA between sections -->
+    <section class="py-16 bg-white">
+        <div class="text-center">
+            <button onclick="openBookingModal()" class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-xl text-lg">
+                Book Your Free Consultation
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </button>
         </div>
     </section>
 
@@ -1855,7 +1830,147 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
         </div>
     </section>
 
+    <!-- ROI Calculator Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50" id="roi-calculator">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 scroll-animate">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Calculate Your ROI</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">See how much revenue BPO Hive can generate for your business. Adjust the inputs below to estimate your return on investment.</p>
+            </div>
 
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <!-- Left: Inputs -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 scroll-animate">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Your Business Metrics</h3>
+
+                    <!-- Sales Team Size -->
+                    <div class="mb-6">
+                        <label class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-gray-700">Sales team size</span>
+                            <span class="text-sm font-bold text-[#4EA6FE]" id="roi-team-val">5</span>
+                        </label>
+                        <input type="range" id="roi-team" min="1" max="50" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>1</span><span>50</span></div>
+                    </div>
+
+                    <!-- Avg Deal Value -->
+                    <div class="mb-6">
+                        <label class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-gray-700">Average deal value ($)</span>
+                            <span class="text-sm font-bold text-[#4EA6FE]" id="roi-deal-val">$10,000</span>
+                        </label>
+                        <input type="range" id="roi-deal" min="1000" max="500000" step="1000" value="10000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>$1K</span><span>$500K</span></div>
+                    </div>
+
+                    <!-- Current Appointments/Month -->
+                    <div class="mb-6">
+                        <label class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-gray-700">Current appointments per month</span>
+                            <span class="text-sm font-bold text-[#4EA6FE]" id="roi-appts-val">10</span>
+                        </label>
+                        <input type="range" id="roi-appts" min="0" max="200" value="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>0</span><span>200</span></div>
+                    </div>
+
+                    <!-- Close Rate -->
+                    <div class="mb-6">
+                        <label class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-gray-700">Close rate (%)</span>
+                            <span class="text-sm font-bold text-[#4EA6FE]" id="roi-close-val">20%</span>
+                        </label>
+                        <input type="range" id="roi-close" min="5" max="60" value="20" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>5%</span><span>60%</span></div>
+                    </div>
+
+                    <!-- Monthly Investment -->
+                    <div class="mb-2">
+                        <label class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-semibold text-gray-700">Monthly investment in BPO Hive ($)</span>
+                            <span class="text-sm font-bold text-[#4EA6FE]" id="roi-invest-val">$5,000</span>
+                        </label>
+                        <input type="range" id="roi-invest" min="1000" max="50000" step="500" value="5000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>$1K</span><span>$50K</span></div>
+                    </div>
+                </div>
+
+                <!-- Right: Results -->
+                <div class="scroll-animate">
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Projected Results with BPO Hive</h3>
+
+                        <!-- Additional Appointments -->
+                        <div class="flex items-center justify-between py-4 border-b border-gray-100">
+                            <div>
+                                <p class="text-sm text-gray-500">Additional appointments / month</p>
+                                <p class="text-3xl font-bold text-gray-900" id="roi-extra-appts">+15</p>
+                            </div>
+                            <div class="w-12 h-12 bg-[#EBF5FF] rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                        </div>
+
+                        <!-- Additional Closed Deals -->
+                        <div class="flex items-center justify-between py-4 border-b border-gray-100">
+                            <div>
+                                <p class="text-sm text-gray-500">Additional closed deals / month</p>
+                                <p class="text-3xl font-bold text-gray-900" id="roi-extra-deals">+3</p>
+                            </div>
+                            <div class="w-12 h-12 bg-[#EBF5FF] rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                        </div>
+
+                        <!-- Additional Monthly Revenue -->
+                        <div class="flex items-center justify-between py-4 border-b border-gray-100">
+                            <div>
+                                <p class="text-sm text-gray-500">Additional monthly revenue</p>
+                                <p class="text-3xl font-bold text-green-600" id="roi-extra-revenue">$30,000</p>
+                            </div>
+                            <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                        </div>
+
+                        <!-- Annual Revenue Impact -->
+                        <div class="flex items-center justify-between py-4 border-b border-gray-100">
+                            <div>
+                                <p class="text-sm text-gray-500">Annual revenue impact</p>
+                                <p class="text-3xl font-bold text-green-600" id="roi-annual-revenue">$360,000</p>
+                            </div>
+                            <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                            </div>
+                        </div>
+
+                        <!-- ROI Percentage -->
+                        <div class="flex items-center justify-between py-4">
+                            <div>
+                                <p class="text-sm text-gray-500">Estimated ROI</p>
+                                <p class="text-4xl font-bold text-[#4EA6FE]" id="roi-percentage">500%</p>
+                            </div>
+                            <div class="w-12 h-12 bg-[#EBF5FF] rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openBookingModal()" class="btn-primary flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-semibold rounded-xl text-lg">
+                            Book Your Free Consultation
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </button>
+                        <a href="/roi-calculator" class="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#4EA6FE] text-[#4EA6FE] font-semibold rounded-xl text-lg hover:bg-[#4EA6FE] hover:text-white transition-all duration-300">
+                            Full ROI Calculator
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                        </a>
+                    </div>
+
+                    <p class="text-xs text-gray-400 mt-4 text-center">* Projections based on average client performance. BPO Hive typically delivers 15–40 additional qualified appointments per month with a 20–35% close rate improvement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="bg-gray-800 pt-16 pb-8">
@@ -1912,6 +2027,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         </li>
                         <li><a href="/careers"
                                 class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Careers</a></li>
+                        <li><a href="/roi-calculator"
+                                class="text-gray-400 hover:text-[#4EA6FE] transition-colors">ROI Calculator</a></li>
                     </ul>
                 </div>
 
@@ -2057,6 +2174,59 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                 nav.classList.remove('shadow-md');
             }
         });
+
+        // ROI Calculator
+        (function() {
+            const sliders = {
+                team: document.getElementById('roi-team'),
+                deal: document.getElementById('roi-deal'),
+                appts: document.getElementById('roi-appts'),
+                close: document.getElementById('roi-close'),
+                invest: document.getElementById('roi-invest')
+            };
+
+            function fmt(n) {
+                if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+                if (n >= 1000) return '$' + n.toLocaleString();
+                return '$' + n;
+            }
+
+            function calculate() {
+                const team = parseInt(sliders.team.value);
+                const deal = parseInt(sliders.deal.value);
+                const appts = parseInt(sliders.appts.value);
+                const closeRate = parseInt(sliders.close.value) / 100;
+                const invest = parseInt(sliders.invest.value);
+
+                // BPO Hive typically adds 3 appointments per rep per month
+                const extraAppts = Math.round(team * 3);
+                const extraDeals = Math.round(extraAppts * closeRate);
+                const extraRevenue = extraDeals * deal;
+                const annualRevenue = extraRevenue * 12;
+                const annualInvest = invest * 12;
+                const roi = annualInvest > 0 ? Math.round(((annualRevenue - annualInvest) / annualInvest) * 100) : 0;
+
+                // Update display values
+                document.getElementById('roi-team-val').textContent = team;
+                document.getElementById('roi-deal-val').textContent = fmt(deal);
+                document.getElementById('roi-appts-val').textContent = appts;
+                document.getElementById('roi-close-val').textContent = closeRate * 100 + '%';
+                document.getElementById('roi-invest-val').textContent = fmt(invest);
+
+                // Update results
+                document.getElementById('roi-extra-appts').textContent = '+' + extraAppts;
+                document.getElementById('roi-extra-deals').textContent = '+' + extraDeals;
+                document.getElementById('roi-extra-revenue').textContent = fmt(extraRevenue);
+                document.getElementById('roi-annual-revenue').textContent = fmt(annualRevenue);
+                document.getElementById('roi-percentage').textContent = roi + '%';
+            }
+
+            Object.values(sliders).forEach(s => {
+                if (s) s.addEventListener('input', calculate);
+            });
+
+            calculate();
+        })();
     </script>
 </body>
 

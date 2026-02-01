@@ -38,29 +38,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon.png">
     <link rel="apple-touch-icon" href="assets/logo/favicon.png">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/tailwind.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'belkins-orange': '#4EA6FE',
-                        'belkins-dark': '#1A1A1A',
-                        'belkins-gray': '#6B7280',
-                        'belkins-light': '#FFFFFF',
-                        'bpo-blue': '#4EA6FE',
-                        'bpo-light': '#78BBFA',
-                    },
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
     <style>
         * {
             font-family: 'Inter', sans-serif;
@@ -562,8 +543,11 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                 <!-- Team Member 7 - Hesham (Data & IT Manager) -->
                 <div class="team-card scroll-animate bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
                     <div class="relative overflow-hidden aspect-[4/5]">
-                        <img src="assets/about-us/team-photos/Hesham.jpg" alt="Hesham - Data & IT Manager" loading="lazy"
-                            class="team-image w-full h-full object-cover">
+                        <picture>
+                            <source srcset="assets/about-us/team-photos/Hesham.webp" type="image/webp">
+                            <img src="assets/about-us/team-photos/Hesham.jpg" alt="Hesham - Data & IT Manager" loading="lazy"
+                                class="team-image w-full h-full object-cover">
+                        </picture>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-belkins-dark">Hesham</h3>
@@ -638,11 +622,11 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         },
                         {
                             name: "Cairo, Egypt",
-                            subtitle: "Headquarters",
+                            subtitle: "Egypt Office",
                             address: "Street 2, El-waha, Nasr City, Cairo Governorate 11577",
                             lat: 30.0626,
                             lng: 31.3370,
-                            isHQ: true,
+                            isHQ: false,
                             googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Street+2+El-waha+Nasr+City+Cairo+Egypt+11577"
                         },
                         {
@@ -656,11 +640,11 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         },
                         {
                             name: "Dubai, UAE",
-                            subtitle: "UAE Office",
+                            subtitle: "Headquarters",
                             address: "Building A1, Dubai Digital Park, Dubai Silicon Oasis",
                             lat: 25.1212,
                             lng: 55.3773,
-                            isHQ: false,
+                            isHQ: true,
                             googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Dubai+Digital+Park+Dubai+Silicon+Oasis+UAE"
                         }
                     ];
@@ -844,17 +828,17 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
 
 <!-- Location Cards -->
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Cairo HQ -->
-                <div onclick="zoomToLocation(30.0626, 31.3370, 'Cairo, Egypt')" class="location-card scroll-animate bg-white rounded-2xl p-6 shadow-lg border-2 border-bpo-blue cursor-pointer hover:shadow-xl transition-all">
+                <!-- Cairo -->
+                <div onclick="zoomToLocation(30.0626, 31.3370, 'Cairo, Egypt')" class="location-card scroll-animate bg-white rounded-2xl p-6 shadow-lg border border-gray-100 cursor-pointer hover:shadow-xl hover:border-bpo-blue transition-all">
                     <div class="flex flex-col">
                         <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 bg-bpo-blue rounded-xl flex items-center justify-center">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-bpo-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                             </div>
-                            <span class="px-2 py-1 bg-bpo-blue/10 text-bpo-blue text-xs font-semibold rounded-full">HQ</span>
+                            <span class="px-2 py-1 bg-gray-100 text-belkins-gray text-xs font-semibold rounded-full">Egypt</span>
                         </div>
                         <h3 class="text-xl font-bold text-belkins-dark mb-1">Cairo, Egypt</h3>
                         <p class="text-belkins-gray text-sm">Street 2, El-waha, Nasr City</p>
@@ -882,17 +866,17 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     </div>
                 </div>
 
-                <!-- Dubai -->
-                <div onclick="zoomToLocation(25.1212, 55.3773, 'Dubai, UAE')" class="location-card scroll-animate bg-white rounded-2xl p-6 shadow-lg border border-gray-100 cursor-pointer hover:shadow-xl hover:border-bpo-blue transition-all">
+                <!-- Dubai HQ -->
+                <div onclick="zoomToLocation(25.1212, 55.3773, 'Dubai, UAE')" class="location-card scroll-animate bg-white rounded-2xl p-6 shadow-lg border-2 border-bpo-blue cursor-pointer hover:shadow-xl transition-all">
                     <div class="flex flex-col">
                         <div class="flex items-center justify-between mb-4">
-                            <div class="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center">
-                                <svg class="w-6 h-6 text-bpo-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-12 h-12 bg-bpo-blue rounded-xl flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                             </div>
-                            <span class="px-2 py-1 bg-gray-100 text-belkins-gray text-xs font-semibold rounded-full">UAE</span>
+                            <span class="px-2 py-1 bg-bpo-blue/10 text-bpo-blue text-xs font-semibold rounded-full">HQ</span>
                         </div>
                         <h3 class="text-xl font-bold text-belkins-dark mb-1">Dubai, UAE</h3>
                         <p class="text-belkins-gray text-sm">Building A1, Dubai Digital Park</p>

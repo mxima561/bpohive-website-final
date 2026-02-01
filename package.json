@@ -1,0 +1,24 @@
+{
+  "name": "bpohive-website-final",
+  "version": "1.0.0",
+  "description": "A pixel-perfect recreation of the Belkins.io landing page built with HTML, Tailwind CSS, and React.",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i src/input.css -o assets/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i src/input.css -o assets/css/tailwind.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mxima561/bpohive-website-final.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mxima561/bpohive-website-final/issues"
+  },
+  "homepage": "https://github.com/mxima561/bpohive-website-final#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}
