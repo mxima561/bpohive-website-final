@@ -449,7 +449,7 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                 container.innerHTML = '<iframe id="JotFormIFrame-233154560347050" title="Book a Call" onload="window.parent.scrollTo(0,0)" allowtransparency="true" allow="geolocation; microphone; camera; fullscreen" src="https://form.jotform.com/233154560347050" frameborder="0" style="min-width:100%; max-width:100%; height:600px; border:none;" scrolling="yes"></iframe>';
                 jotformLoaded = true;
 
-                // Handle iframe resize
+                // Handle iframe resize and form submission
                 if (window.addEventListener) {
                     window.addEventListener("message", function (e) {
                         if (e.data && typeof e.data === "string") {
@@ -1847,7 +1847,13 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     <div class="mb-6">
                         <label class="flex justify-between items-center mb-2">
                             <span class="text-sm font-semibold text-gray-700">Sales team size</span>
-                            <span class="text-sm font-bold text-[#4EA6FE]" id="roi-team-val">5</span>
+                            <div class="flex items-center gap-1 bg-[#EBF5FF] rounded-lg px-2 py-0.5">
+                                <span class="text-sm font-bold text-[#4EA6FE]" id="roi-team-val">5</span>
+                                <div class="flex flex-col -my-0.5">
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 3L10 8H2L6 3Z" fill="currentColor"/></svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 9L2 4H10L6 9Z" fill="currentColor"/></svg>
+                                </div>
+                            </div>
                         </label>
                         <input type="range" id="roi-team" min="1" max="50" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
                         <div class="flex justify-between text-xs text-gray-400 mt-1"><span>1</span><span>50</span></div>
@@ -1857,7 +1863,13 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     <div class="mb-6">
                         <label class="flex justify-between items-center mb-2">
                             <span class="text-sm font-semibold text-gray-700">Average deal value ($)</span>
-                            <span class="text-sm font-bold text-[#4EA6FE]" id="roi-deal-val">$10,000</span>
+                            <div class="flex items-center gap-1 bg-[#EBF5FF] rounded-lg px-2 py-0.5">
+                                <span class="text-sm font-bold text-[#4EA6FE]" id="roi-deal-val">$10,000</span>
+                                <div class="flex flex-col -my-0.5">
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 3L10 8H2L6 3Z" fill="currentColor"/></svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 9L2 4H10L6 9Z" fill="currentColor"/></svg>
+                                </div>
+                            </div>
                         </label>
                         <input type="range" id="roi-deal" min="1000" max="500000" step="1000" value="10000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
                         <div class="flex justify-between text-xs text-gray-400 mt-1"><span>$1K</span><span>$500K</span></div>
@@ -1867,7 +1879,13 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     <div class="mb-6">
                         <label class="flex justify-between items-center mb-2">
                             <span class="text-sm font-semibold text-gray-700">Current appointments per month</span>
-                            <span class="text-sm font-bold text-[#4EA6FE]" id="roi-appts-val">10</span>
+                            <div class="flex items-center gap-1 bg-[#EBF5FF] rounded-lg px-2 py-0.5">
+                                <span class="text-sm font-bold text-[#4EA6FE]" id="roi-appts-val">10</span>
+                                <div class="flex flex-col -my-0.5">
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 3L10 8H2L6 3Z" fill="currentColor"/></svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 9L2 4H10L6 9Z" fill="currentColor"/></svg>
+                                </div>
+                            </div>
                         </label>
                         <input type="range" id="roi-appts" min="0" max="200" value="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
                         <div class="flex justify-between text-xs text-gray-400 mt-1"><span>0</span><span>200</span></div>
@@ -1877,17 +1895,29 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     <div class="mb-6">
                         <label class="flex justify-between items-center mb-2">
                             <span class="text-sm font-semibold text-gray-700">Close rate (%)</span>
-                            <span class="text-sm font-bold text-[#4EA6FE]" id="roi-close-val">20%</span>
+                            <div class="flex items-center gap-1 bg-[#EBF5FF] rounded-lg px-2 py-0.5">
+                                <span class="text-sm font-bold text-[#4EA6FE]" id="roi-close-val">20%</span>
+                                <div class="flex flex-col -my-0.5">
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 3L10 8H2L6 3Z" fill="currentColor"/></svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 9L2 4H10L6 9Z" fill="currentColor"/></svg>
+                                </div>
+                            </div>
                         </label>
                         <input type="range" id="roi-close" min="5" max="60" value="20" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
                         <div class="flex justify-between text-xs text-gray-400 mt-1"><span>5%</span><span>60%</span></div>
                     </div>
 
-                    <!-- Monthly Investment -->
+                    <!-- Monthly Budget -->
                     <div class="mb-2">
                         <label class="flex justify-between items-center mb-2">
-                            <span class="text-sm font-semibold text-gray-700">Monthly investment in BPO Hive ($)</span>
-                            <span class="text-sm font-bold text-[#4EA6FE]" id="roi-invest-val">$5,000</span>
+                            <span class="text-sm font-semibold text-gray-700">Monthly budget ($)</span>
+                            <div class="flex items-center gap-1 bg-[#EBF5FF] rounded-lg px-2 py-0.5">
+                                <span class="text-sm font-bold text-[#4EA6FE]" id="roi-invest-val">$5,000</span>
+                                <div class="flex flex-col -my-0.5">
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 3L10 8H2L6 3Z" fill="currentColor"/></svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 9L2 4H10L6 9Z" fill="currentColor"/></svg>
+                                </div>
+                            </div>
                         </label>
                         <input type="range" id="roi-invest" min="1000" max="50000" step="500" value="5000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
                         <div class="flex justify-between text-xs text-gray-400 mt-1"><span>$1K</span><span>$50K</span></div>
@@ -2223,6 +2253,55 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
 
             Object.values(sliders).forEach(s => {
                 if (s) s.addEventListener('input', calculate);
+            });
+
+            // Make value displays clickable for manual input
+            var roiValConfigs = [
+                { valId: 'roi-team-val', sliderId: 'roi-team' },
+                { valId: 'roi-deal-val', sliderId: 'roi-deal' },
+                { valId: 'roi-appts-val', sliderId: 'roi-appts' },
+                { valId: 'roi-close-val', sliderId: 'roi-close' },
+                { valId: 'roi-invest-val', sliderId: 'roi-invest' }
+            ];
+
+            roiValConfigs.forEach(function(cfg) {
+                var valEl = document.getElementById(cfg.valId);
+                var wrapper = valEl.parentElement;
+                var slider = document.getElementById(cfg.sliderId);
+                wrapper.style.cursor = 'pointer';
+                wrapper.title = 'Click to edit';
+
+                wrapper.addEventListener('click', function() {
+                    var currentVal = slider.value;
+                    var input = document.createElement('input');
+                    input.type = 'number';
+                    input.value = currentVal;
+                    input.min = slider.min;
+                    input.max = slider.max;
+                    if (slider.step) input.step = slider.step;
+                    input.className = 'text-sm font-bold text-[#4EA6FE] bg-[#EBF5FF] px-2 py-1 rounded-lg w-24 text-center outline-none ring-2 ring-[#4EA6FE]';
+
+                    wrapper.replaceWith(input);
+                    input.focus();
+                    input.select();
+
+                    function commit() {
+                        var newVal = parseInt(input.value);
+                        var min = parseInt(slider.min);
+                        var max = parseInt(slider.max);
+                        if (isNaN(newVal) || newVal < min) newVal = min;
+                        if (newVal > max) newVal = max;
+                        slider.value = newVal;
+                        input.replaceWith(wrapper);
+                        calculate();
+                    }
+
+                    input.addEventListener('blur', commit);
+                    input.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter') { e.preventDefault(); commit(); }
+                        if (e.key === 'Escape') { input.replaceWith(wrapper); }
+                    });
+                });
             });
 
             calculate();
