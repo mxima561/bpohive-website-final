@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <!-- Google Analytics 4 - Replace G-XXXXXXXXXX with your Measurement ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics 4 - Replace G-MRYSLESY4H with your Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MRYSLESY4H"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
+        gtag('config', 'G-MRYSLESY4H');
     </script>
 
     <meta charset="UTF-8">
@@ -69,6 +69,11 @@
     <link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 
     <link rel="stylesheet" href="assets/css/tailwind.css">
+
+    <!-- Calendly link widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -404,77 +409,11 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
 </head>
 
 <body class="bg-white">
-    <!-- Booking Modal -->
-    <div id="booking-modal" class="fixed inset-0 z-[100] hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <!-- Backdrop -->
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeBookingModal()" aria-hidden="true"></div>
-
-        <!-- Modal Content -->
-        <div class="absolute inset-0 overflow-y-auto py-4 px-4">
-            <div class="min-h-full flex items-center justify-center">
-                <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-xl mx-auto overflow-hidden">
-                    <!-- Screen Reader Title -->
-                    <h2 id="modal-title" class="sr-only">Book a Call with BPO Hive</h2>
-
-                    <!-- Close Button -->
-                    <button onclick="closeBookingModal()"
-                        class="absolute top-3 right-3 z-20 w-8 h-8 bg-white/90 hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors shadow-md"
-                        aria-label="Close booking dialog"
-                        type="button">
-                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-
-                    <!-- JotForm Embed -->
-                    <div id="jotform-container" class="w-full" style="min-height: 600px;">
-                        <!-- Iframe will be loaded when modal opens -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        let jotformLoaded = false;
-
         function openBookingModal() {
-            document.getElementById('booking-modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-
-            // Load JotForm iframe only when modal opens (lazy load)
-            if (!jotformLoaded) {
-                const container = document.getElementById('jotform-container');
-                container.innerHTML = '<iframe id="JotFormIFrame-233154560347050" title="Book a Call" onload="window.parent.scrollTo(0,0)" allowtransparency="true" allow="geolocation; microphone; camera; fullscreen" src="https://form.jotform.com/233154560347050" frameborder="0" style="min-width:100%; max-width:100%; height:600px; border:none;" scrolling="yes"></iframe>';
-                jotformLoaded = true;
-
-                // Handle iframe resize and form submission
-                if (window.addEventListener) {
-                    window.addEventListener("message", function (e) {
-                        if (e.data && typeof e.data === "string") {
-                            var args = e.data.split(":");
-                            if (args.length > 2 && args[0] === "setHeight") {
-                                var iframe = document.getElementById("JotFormIFrame-" + args[1]);
-                                if (iframe) {
-                                    iframe.style.height = args[2] + "px";
-                                }
-                            }
-                        }
-                    }, false);
-                }
-            }
+            Calendly.initPopupWidget({url: 'https://calendly.com/d/43h-5tz-rkf/discovery-call'});
+            return false;
         }
-
-        function closeBookingModal() {
-            document.getElementById('booking-modal').classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeBookingModal();
-        });
 
         // Pipeline accordion toggle
         function togglePipelineItem(element) {

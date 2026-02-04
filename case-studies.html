@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <!-- Google Analytics 4 - Replace G-XXXXXXXXXX with your Measurement ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <!-- Google Analytics 4 - Replace G-MRYSLESY4H with your Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MRYSLESY4H"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX');
+        gtag('config', 'G-MRYSLESY4H');
     </script>
 
     <meta charset="UTF-8">
@@ -39,6 +39,11 @@
     <link rel="apple-touch-icon" href="assets/logo/favicon.png">
     
     <link rel="stylesheet" href="assets/css/tailwind.css">
+
+    <!-- Calendly link widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -53,6 +58,13 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
 </head>
 
 <body class="bg-white">
+    <script>
+        function openBookingModal() {
+            Calendly.initPopupWidget({url: 'https://calendly.com/d/43h-5tz-rkf/discovery-call'});
+            return false;
+        }
+    </script>
+
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,10 +86,10 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         class="nav-link text-belkins-dark hover:text-bpo-blue transition-colors">About</a>
                     <a href="/pricing"
                         class="nav-link text-belkins-dark hover:text-bpo-blue transition-colors">Pricing</a>
-                    <a href="index.html#contact"
+                    <button onclick="openBookingModal()"
                         class="btn-primary inline-flex items-center px-6 py-2 bg-bpo-blue text-white font-medium rounded-full hover:bg-blue-600 transition-colors">
                         Book a call
-                    </a>
+                    </button>
                 </div>
                 <div class="md:hidden">
                     <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100">
@@ -135,9 +147,9 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
 
                 <a href="/pricing" class="block py-3 text-belkins-dark font-medium">Pricing</a>
 
-                <a href="index.html#contact"
+                <button onclick="openBookingModal()"
                     class="block w-full py-3 mt-4 text-center bg-bpo-blue text-white rounded-full font-medium">Book a
-                    call</a>
+                    call</button>
             </div>
         </div>
     </nav>
@@ -444,14 +456,14 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                 <p class="text-gray-600 mb-8 max-w-xl mx-auto">
                     Let's discuss how we can help you achieve similar results for your business.
                 </p>
-                <a href="https://www.jotform.com/build/233154560347050" target="_blank"
+                <button onclick="openBookingModal()"
                     class="inline-flex items-center px-8 py-4 bg-bpo-blue hover:bg-blue-600 text-white font-medium rounded-full transition-colors">
                     Book a Discovery Call
                     <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                </a>
+                </button>
             </div>
         </div>
     </div>
