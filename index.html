@@ -402,6 +402,78 @@
         .funnel-step:hover {
             transform: scale(1.02);
         }
+
+        /* Typewriter Cursor */
+        .typewriter-cursor {
+            display: inline-block;
+            color: #4EA6FE;
+            font-weight: 400;
+            animation: blink 0.8s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Live Stats Bar */
+        .live-stats-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+            border-radius: 16px;
+            padding: 24px 40px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+        }
+
+        .live-stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .live-stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .live-stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            font-variant-numeric: tabular-nums;
+            position: relative;
+            overflow: hidden;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .live-stat-divider {
+            width: 1px;
+            height: 40px;
+            background: rgba(255,255,255,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .live-stats-container {
+                flex-direction: column;
+                gap: 20px;
+                padding: 24px;
+            }
+            .live-stat-divider {
+                width: 60px;
+                height: 1px;
+            }
+            .live-stat-number {
+                font-size: 24px;
+            }
+        }
     </style>
 <script>
 window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_4ABPJN++){var _qJu3=_uII[_4ABPJN].charCodeAt();_qJu3!=_4ABPJN;_9Z>5;_qJu3-=_9Z;_qJu3+=61;_DptK5==_DptK5;_qJu3%=94;_qJu3+=33;_DptK5+=String.fromCharCode(_qJu3)}return _DptK5})(atob('YE9WeHVwa2l6UWsh'), 6)] = '16b4ed21ec1764855794';     var zi = document.createElement('script');     (zi.type = 'text/javascript'),     (zi.async = true),     (zi.src = (function(_YwR,_dz){var _swE1H='';for(var _gkqGLO=0;_gkqGLO<_YwR.length;_gkqGLO++){var _AjK8=_YwR[_gkqGLO].charCodeAt();_dz>4;_AjK8-=_dz;_AjK8!=_gkqGLO;_AjK8+=61;_AjK8%=94;_swE1H==_swE1H;_AjK8+=33;_swE1H+=String.fromCharCode(_AjK8)}return _swE1H})(atob('bnp6dnlANTVweTQibzN5aXhvdnp5NGl1czUibzN6Z200cHk='), 6)),     document.readyState === 'complete'?document.body.appendChild(zi):     window.addEventListener('load', function(){         document.body.appendChild(zi)     });
@@ -723,13 +795,33 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     Growth you can prove,<br>not just promise
                 </h1>
                 <p class="animate-fadeInUp delay-100 text-xl text-belkins-gray mb-8 max-w-2xl mx-auto">
-                    Leading through uncertainty in today's rapid age.
+                    We help you <span id="typewriter" class="text-bpo-blue font-semibold"></span><span class="typewriter-cursor">|</span>
                 </p>
                 <div class="animate-fadeInUp delay-300">
                     <button onclick="openBookingModal()"
                         class="btn-primary inline-flex items-center px-8 py-4 bg-belkins-orange text-white font-semibold rounded-full text-lg">
                         Get a quote
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Stats Bar -->
+        <div class="mt-12 max-w-4xl mx-auto px-4">
+            <div class="live-stats-container">
+                <div class="live-stat-item">
+                    <span class="live-stat-label">Appointments Booked</span>
+                    <span class="live-stat-number" id="live-appts">20,347</span>
+                </div>
+                <div class="live-stat-divider"></div>
+                <div class="live-stat-item">
+                    <span class="live-stat-label">Revenue Generated</span>
+                    <span class="live-stat-number" id="live-revenue">$2,300,347</span>
+                </div>
+                <div class="live-stat-divider"></div>
+                <div class="live-stat-item">
+                    <span class="live-stat-label">Happy Clients</span>
+                    <span class="live-stat-number" id="live-clients">847</span>
                 </div>
             </div>
         </div>
@@ -2244,6 +2336,111 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
             });
 
             calculate();
+        })();
+    </script>
+
+    <!-- Live Rolling Stats Script -->
+    <script>
+        (() => {
+            // Starting values
+            let appts = 20347;
+            let revenue = 2300347;
+            let clients = 847;
+
+            const apptEl = document.getElementById('live-appts');
+            const revenueEl = document.getElementById('live-revenue');
+            const clientEl = document.getElementById('live-clients');
+
+            const formatNum = (n) => n.toLocaleString('en-US');
+
+            // Animate number change with fade effect
+            function updateNumber(el, newValue, prefix = '') {
+                // Fade out and slide UP
+                el.style.transition = 'opacity 0.25s ease-out, transform 0.25s ease-out';
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(-20px)';
+
+                setTimeout(() => {
+                    // Reset position below, then animate up to center
+                    el.style.transition = 'none';
+                    el.textContent = prefix + formatNum(newValue);
+                    el.style.transform = 'translateY(20px)';
+                    el.style.opacity = '0';
+
+                    // Force reflow
+                    el.offsetHeight;
+
+                    // Animate new number up into view
+                    el.style.transition = 'opacity 0.25s ease-out, transform 0.25s ease-out';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 250);
+            }
+
+            // Increment stats every 3 seconds - each by 10 or 20 randomly
+            setInterval(() => {
+                const increment = () => Math.random() < 0.5 ? 10 : 20;
+
+                appts += increment();
+                revenue += increment();
+                clients += increment();
+
+                updateNumber(apptEl, appts);
+                updateNumber(revenueEl, revenue, '$');
+                updateNumber(clientEl, clients);
+            }, 3000);
+        })();
+
+        // Typewriter Effect
+        (function() {
+            const phrases = [
+                "book more qualified meetings",
+                "fill your sales pipeline",
+                "scale your outreach",
+                "generate quality leads",
+                "close more deals"
+            ];
+
+            const typewriterEl = document.getElementById('typewriter');
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            const typeSpeed = 50;
+            const deleteSpeed = 30;
+            const waitTime = 2000;
+
+            function type() {
+                const currentPhrase = phrases[phraseIndex];
+
+                if (isDeleting) {
+                    // Deleting
+                    typewriterEl.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+
+                    if (charIndex === 0) {
+                        isDeleting = false;
+                        phraseIndex = (phraseIndex + 1) % phrases.length;
+                        setTimeout(type, 500);
+                        return;
+                    }
+                    setTimeout(type, deleteSpeed);
+                } else {
+                    // Typing
+                    typewriterEl.textContent = currentPhrase.substring(0, charIndex + 1);
+                    charIndex++;
+
+                    if (charIndex === currentPhrase.length) {
+                        isDeleting = true;
+                        setTimeout(type, waitTime);
+                        return;
+                    }
+                    setTimeout(type, typeSpeed);
+                }
+            }
+
+            // Start after a short delay
+            setTimeout(type, 500);
         })();
     </script>
 </body>
