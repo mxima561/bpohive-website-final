@@ -1,0 +1,6 @@
+[   55931ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:3000/services/crm-services:0
+[   55941ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:3000/favicon.ico:0
+[   58370ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:3000/services/crm-services:0
+[   59070ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:3000/services/crm-services:0
+[   59296ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:3000/services/crm-services:0
+[   62113ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://localhost:3000/services/appointment-setting:0
