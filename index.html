@@ -4,26 +4,28 @@
 <head>
     <!-- Meta Pixel Code -->
     <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1492963711498633');
-    fbq('track', 'PageView');
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1492963711498633');
+        fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1492963711498633&ev=PageView&noscript=1"
-    /></noscript>
+            src="https://www.facebook.com/tr?id=1492963711498633&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
     <!-- Google Analytics 4 - Replace G-MRYSLESY4H with your Measurement ID -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MRYSLESY4H"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-MRYSLESY4H');
     </script>
@@ -98,6 +100,8 @@
         * {
             font-family: 'Inter', sans-serif;
         }
+
+
 
         /* Screen Reader Only - Accessibility */
         .sr-only {
@@ -312,6 +316,35 @@
             left: 100%;
         }
 
+        /* Magnetize particle effect */
+        .magnetize-wrap {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            padding: 30px 120px;
+            margin: -30px -120px;
+        }
+
+        .magnetize-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+        }
+
+        .magnetize-wrap:hover .magnetize-particle {
+            transform: translate(0px, 0px) !important;
+            opacity: 1;
+        }
+
+        .magnetize-wrap .btn-primary {
+            position: relative;
+            z-index: 1;
+        }
+
         /* Card hover effects */
         .service-card {
             transition: all 0.3s ease;
@@ -430,77 +463,109 @@
         }
 
         @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
         }
 
         /* Live Stats Bar */
         .live-stats-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 32px;
-            background: linear-gradient(135deg, #334155 0%, #475569 100%);
-            border-radius: 16px;
-            padding: 24px 40px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            background: #fff;
+            border-radius: 20px;
+            padding: 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(78, 166, 254, 0.08);
+            border: 1px solid rgba(78, 166, 254, 0.12);
+            overflow: hidden;
         }
 
         .live-stat-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            justify-content: center;
+            gap: 6px;
+            padding: 28px 16px;
+            position: relative;
         }
 
-        .live-stat-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.5);
+        .live-stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(78, 166, 254, 0.2), transparent);
         }
 
         .live-stat-number {
-            font-size: 28px;
-            font-weight: 700;
-            color: #fff;
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e293b;
             font-variant-numeric: tabular-nums;
-            position: relative;
-            overflow: hidden;
-            min-width: 140px;
-            text-align: center;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .live-stat-label {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #94a3b8;
+            white-space: nowrap;
         }
 
         .live-stat-divider {
-            width: 1px;
-            height: 40px;
-            background: rgba(255,255,255,0.15);
+            display: none;
         }
 
         @media (max-width: 768px) {
             .live-stats-container {
-                flex-direction: column;
-                gap: 20px;
-                padding: 24px;
+                grid-template-columns: repeat(2, 1fr);
+                border-radius: 16px;
             }
-            .live-stat-divider {
-                width: 60px;
-                height: 1px;
+
+            .live-stat-item {
+                padding: 20px 12px;
             }
+
+            .live-stat-item:nth-child(2)::after {
+                display: none;
+            }
+
+            .live-stat-item:nth-child(-n+2) {
+                border-bottom: 1px solid rgba(78, 166, 254, 0.1);
+            }
+
             .live-stat-number {
-                font-size: 24px;
+                font-size: 26px;
+            }
+
+            .live-stat-label {
+                font-size: 10px;
             }
         }
     </style>
-<script>
-window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_4ABPJN++){var _qJu3=_uII[_4ABPJN].charCodeAt();_qJu3!=_4ABPJN;_9Z>5;_qJu3-=_9Z;_qJu3+=61;_DptK5==_DptK5;_qJu3%=94;_qJu3+=33;_DptK5+=String.fromCharCode(_qJu3)}return _DptK5})(atob('YE9WeHVwa2l6UWsh'), 6)] = '16b4ed21ec1764855794';     var zi = document.createElement('script');     (zi.type = 'text/javascript'),     (zi.async = true),     (zi.src = (function(_YwR,_dz){var _swE1H='';for(var _gkqGLO=0;_gkqGLO<_YwR.length;_gkqGLO++){var _AjK8=_YwR[_gkqGLO].charCodeAt();_dz>4;_AjK8-=_dz;_AjK8!=_gkqGLO;_AjK8+=61;_AjK8%=94;_swE1H==_swE1H;_AjK8+=33;_swE1H+=String.fromCharCode(_AjK8)}return _swE1H})(atob('bnp6dnlANTVweTQibzN5aXhvdnp5NGl1czUibzN6Z200cHk='), 6)),     document.readyState === 'complete'?document.body.appendChild(zi):     window.addEventListener('load', function(){         document.body.appendChild(zi)     });
-</script>
+    <script>
+        window[(function (_uII, _9Z) { var _DptK5 = ''; for (var _4ABPJN = 0; _4ABPJN < _uII.length; _4ABPJN++) { var _qJu3 = _uII[_4ABPJN].charCodeAt(); _qJu3 != _4ABPJN; _9Z > 5; _qJu3 -= _9Z; _qJu3 += 61; _DptK5 == _DptK5; _qJu3 %= 94; _qJu3 += 33; _DptK5 += String.fromCharCode(_qJu3) } return _DptK5 })(atob('YE9WeHVwa2l6UWsh'), 6)] = '16b4ed21ec1764855794'; var zi = document.createElement('script'); (zi.type = 'text/javascript'), (zi.async = true), (zi.src = (function (_YwR, _dz) { var _swE1H = ''; for (var _gkqGLO = 0; _gkqGLO < _YwR.length; _gkqGLO++) { var _AjK8 = _YwR[_gkqGLO].charCodeAt(); _dz > 4; _AjK8 -= _dz; _AjK8 != _gkqGLO; _AjK8 += 61; _AjK8 %= 94; _swE1H == _swE1H; _AjK8 += 33; _swE1H += String.fromCharCode(_AjK8) } return _swE1H })(atob('bnp6dnlANTVweTQibzN5aXhvdnp5NGl1czUibzN6Z200cHk='), 6)), document.readyState === 'complete' ? document.body.appendChild(zi) : window.addEventListener('load', function () { document.body.appendChild(zi) });
+    </script>
 </head>
 
 <body class="bg-white">
     <script>
         function openBookingModal() {
-            Calendly.initPopupWidget({url: 'https://calendly.com/d/43h-5tz-rkf/discovery-call'});
+            Calendly.initPopupWidget({ url: 'https://calendly.com/d/43h-5tz-rkf/discovery-call' });
             return false;
         }
 
@@ -719,10 +784,11 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                             <a href="/case-studies"
                                 class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">Case
                                 studies</a>
-                            <a href="/careers"
-                                class="block p-2 text-sm text-belkins-dark hover:text-belkins-orange transition-colors rounded-lg hover:bg-gray-50">Careers</a>
                         </div>
                     </div>
+
+                    <a href="/careers"
+                        class="nav-link text-belkins-dark hover:text-belkins-orange transition-colors">Careers</a>
 
                     <a href="/pricing"
                         class="nav-link text-belkins-dark hover:text-belkins-orange transition-colors">Pricing</a>
@@ -753,23 +819,38 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
             <div class="px-4 py-4 space-y-1">
                 <!-- Services Dropdown -->
                 <div class="mobile-dropdown">
-                    <button class="mobile-dropdown-btn flex items-center justify-between w-full py-3 text-belkins-dark font-medium">
+                    <button
+                        class="mobile-dropdown-btn flex items-center justify-between w-full py-3 text-belkins-dark font-medium">
                         Services & solutions
-                        <svg class="mobile-dropdown-icon w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="mobile-dropdown-icon w-5 h-5 transition-transform duration-200" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <div class="mobile-dropdown-content hidden pl-4 pb-2 space-y-1">
                         <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider py-2">Lead Generation</p>
-                        <a href="/services/appointment-setting" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Appointment setting</a>
-                        <a href="/services/cold-email-outreach" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Cold email outreach</a>
-                        <a href="/services/cold-calling" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Cold calling</a>
-                        <a href="/services/linkedin-lead-generation" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">LinkedIn lead generation</a>
-                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider py-2 mt-2">Data Services</p>
-                        <a href="/services/lead-research" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Lead Research</a>
-                        <a href="/services/email-deliverability" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Email Deliverability</a>
-                        <a href="/services/crm-services" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">CRM Services</a>
-                        <a href="/services/sales-development" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Sales Development</a>
+                        <a href="/services/appointment-setting"
+                            class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Appointment
+                            setting</a>
+                        <a href="/services/cold-email-outreach"
+                            class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Cold email
+                            outreach</a>
+                        <a href="/services/cold-calling"
+                            class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Cold calling</a>
+                        <a href="/services/linkedin-lead-generation"
+                            class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">LinkedIn lead
+                            generation</a>
+                        <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider py-2 mt-2">Data Services
+                        </p>
+                        <a href="/services/lead-research"
+                            class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Lead Research</a>
+                        <a href="/services/email-deliverability"
+                            class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Email
+                            Deliverability</a>
+                        <a href="/services/crm-services"
+                            class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">CRM Services</a>
+                        <a href="/services/sales-development"
+                            class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Sales Development</a>
                     </div>
                 </div>
 
@@ -777,23 +858,29 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
 
                 <!-- About Dropdown -->
                 <div class="mobile-dropdown">
-                    <button class="mobile-dropdown-btn flex items-center justify-between w-full py-3 text-belkins-dark font-medium">
+                    <button
+                        class="mobile-dropdown-btn flex items-center justify-between w-full py-3 text-belkins-dark font-medium">
                         About
-                        <svg class="mobile-dropdown-icon w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="mobile-dropdown-icon w-5 h-5 transition-transform duration-200" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
                     <div class="mobile-dropdown-content hidden pl-4 pb-2 space-y-1">
-                        <a href="/about" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">About us</a>
-                        <a href="/case-studies" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Case studies</a>
-                        <a href="/careers" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Careers</a>
+                        <a href="/about" class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">About
+                            us</a>
+                        <a href="/case-studies"
+                            class="block py-2 text-sm text-belkins-dark hover:text-belkins-orange">Case studies</a>
                     </div>
                 </div>
+
+                <a href="/careers" class="block py-3 text-belkins-dark font-medium">Careers</a>
 
                 <a href="/pricing" class="block py-3 text-belkins-dark font-medium">Pricing</a>
 
                 <button onclick="openBookingModal()"
-                    class="block w-full py-3 mt-4 text-center bg-belkins-orange text-white rounded-full font-medium">Book a
+                    class="block w-full py-3 mt-4 text-center bg-belkins-orange text-white rounded-full font-medium">Book
+                    a
                     call</button>
             </div>
         </div>
@@ -809,10 +896,11 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-4xl mx-auto">
                 <h1 class="animate-fadeInUp text-5xl md:text-7xl font-bold text-belkins-dark mb-6 leading-tight">
-                    Growth you can prove,<br>not just promise
+                    We Fill your Pipeline with<br>Sales Ready Leads
                 </h1>
                 <p class="animate-fadeInUp delay-100 text-xl text-belkins-gray mb-8 max-w-2xl mx-auto">
-                    We help you <span id="typewriter" class="text-bpo-blue font-semibold"></span><span class="typewriter-cursor">|</span>
+                    We help you <span id="typewriter" class="text-bpo-blue font-semibold"></span><span
+                        class="typewriter-cursor">|</span>
                 </p>
                 <div class="animate-fadeInUp delay-300">
                     <button onclick="openBookingModal()"
@@ -824,88 +912,133 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
         </div>
 
         <!-- Live Stats Bar -->
-        <div class="mt-12 max-w-4xl mx-auto px-4">
+        <div class="mt-12 max-w-3xl mx-auto px-4">
             <div class="live-stats-container">
                 <div class="live-stat-item">
-                    <span class="live-stat-label">Appointments Booked</span>
+                    <span class="live-stat-number" id="live-leads">85%</span>
+                    <span class="live-stat-label">Client Retention</span>
+                </div>
+                <div class="live-stat-item">
+                    <span class="live-stat-number" id="live-roi">30%</span>
+                    <span class="live-stat-label">Sales Increase (Avg.)</span>
+                </div>
+                <div class="live-stat-item">
                     <span class="live-stat-number" id="live-appts">20,347</span>
+                    <span class="live-stat-label">Appointments Set</span>
                 </div>
-                <div class="live-stat-divider"></div>
                 <div class="live-stat-item">
+                    <span class="live-stat-number" id="live-revenue">$25.0M+</span>
                     <span class="live-stat-label">Revenue Generated</span>
-                    <span class="live-stat-number" id="live-revenue">$2,300,347</span>
-                </div>
-                <div class="live-stat-divider"></div>
-                <div class="live-stat-item">
-                    <span class="live-stat-label">Happy Clients</span>
-                    <span class="live-stat-number" id="live-clients">847</span>
                 </div>
             </div>
         </div>
 
-        <!-- Trust Badges section -->
-        <div class="mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-center text-belkins-gray mb-10 text-lg">Featured on</p>
+    </section>
 
-            <!-- Main Featured Logos Row -->
-            <div
-                class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center max-w-4xl mx-auto mb-12">
-                <a href="https://www.upwork.com" target="_blank" rel="noopener noreferrer"
-                    class="logo-hover flex items-center justify-center p-4">
-                    <img src="assets/logo/trust-badges/Upwork-Logo.png" alt="Top Rated Upwork" class="h-16 object-contain" loading="lazy">
-                </a>
-                <a href="https://clutch.co" target="_blank" rel="noopener noreferrer"
-                    class="logo-hover flex items-center justify-center p-4">
-                    <img src="assets/logo/trust-badges/Clutch-Logo.png" alt="Clutch" class="h-12 object-contain" loading="lazy">
-                </a>
-                <a href="https://www.trustpilot.com/review/bpohive.com" target="_blank" rel="noopener noreferrer"
-                    class="logo-hover flex items-center justify-center p-4">
-                    <img src="assets/logo/trust-badges/trustpilotlogo2.webp" alt="Trustpilot"
-                        class="h-14 object-contain" loading="lazy">
-                </a>
-                <a href="https://www.salesforge.ai/directory/agencies/bpo-hive" target="_blank"
-                    rel="noopener noreferrer" class="logo-hover flex items-center justify-center p-4">
-                    <img src="assets/logo/trust-badges/salesforge_Logo_fe56ba5eaa.svg" alt="Salesforge"
-                        class="h-8 object-contain" loading="lazy">
-                </a>
-            </div>
+    <!-- Featured On Carousel -->
+    <section class="py-12 bg-white border-y border-gray-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="text-center text-gray-400 text-xs uppercase tracking-[0.2em] font-semibold mb-10">Featured On</p>
+            <div class="relative">
+                <div class="relative max-w-6xl mx-auto overflow-hidden" style="height:64px;">
+                    <div class="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+                    <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
 
-            <!-- Press & Awards Section -->
-            <div class="border-t border-gray-200 pt-10">
-                <p class="text-center text-belkins-gray mb-8 text-sm uppercase tracking-wider">Press & Awards</p>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                    <!-- USA News -->
-                    <a href="https://usanews.com/newsroom/bpo-hive-the-outsourcing-partner-delivering-real-results"
-                        target="_blank" rel="noopener noreferrer"
-                        class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                        <img src="assets/logo/trust-badges/USA-News.png" alt="USA News" loading="lazy"
-                            class="h-16 object-contain mb-3">
-                        <span class="text-xs text-[#4EA6FE] font-medium">Read article &rarr;</span>
-                    </a>
-                    <!-- Evergreen Award -->
-                    <a href="https://evergreenawards.com/awards/bpo-hive-best-outsourcing-appointment-setting-company-in-the-us-of-2025"
-                        target="_blank" rel="noopener noreferrer"
-                        class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                        <img src="assets/logo/trust-badges/evergreen.webp" alt="Evergreen Award"
-                            class="h-16 object-contain mb-3" loading="lazy">
-                        <span class="text-xs text-[#4EA6FE] font-medium">View award &rarr;</span>
-                    </a>
-                    <!-- Identity Magazine -->
-                    <a href="https://identity-mag.com/bringing-egyptian-talents-forward-and-showcasing-their-full-potential-a-talk-with-amr-abdelrazzak-founder-and-ceo-at-bpo-hive/"
-                        target="_blank" rel="noopener noreferrer"
-                        class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                        <img src="assets/logo/trust-badges/identity3.webp" alt="Identity Magazine"
-                            class="h-12 object-contain mb-3" loading="lazy">
-                        <span class="text-xs text-[#4EA6FE] font-medium">Read interview &rarr;</span>
-                    </a>
-                    <!-- The Manifest -->
-                    <a href="https://themanifest.com/company/bpo-hive" target="_blank" rel="noopener noreferrer"
-                        class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                        <img src="assets/logo/trust-badges/themanifestlogo.webp" alt="The Manifest"
-                            class="h-12 object-contain mb-3" loading="lazy">
-                        <span class="text-xs text-[#4EA6FE] font-medium">View profile &rarr;</span>
-                    </a>
+                    <div class="flex items-center"
+                        style="width:max-content; animation: featured-scroll 100s linear infinite; gap: 12rem;">
+                        <!-- Original Logos -->
+                        <a href="https://www.upwork.com/agencies/bpo-companies/?page=3" target="_blank"
+                            rel="noopener noreferrer">
+                            <img src="assets/logo/trust-badges/Upwork-Logo.png" alt="Upwork"
+                                class="h-9 w-auto object-contain">
+                        </a>
+                        <a href="https://clutch.co/profile/bpo-hive" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/logo/trust-badges/Clutch-Logo.png" alt="Clutch"
+                                class="h-9 w-auto object-contain">
+                        </a>
+                        <a href="https://www.trustpilot.com/review/bpohive.com" target="_blank"
+                            rel="noopener noreferrer">
+                            <img src="assets/logo/trust-badges/trustpilotlogo2.webp" alt="Trustpilot"
+                                class="h-12 w-auto object-contain">
+                        </a>
+                        <a href="https://www.salesforge.ai/directory/agencies/bpo-hive" target="_blank"
+                            rel="noopener noreferrer">
+                            <img src="assets/logo/trust-badges/salesforge_Logo_fe56ba5eaa.svg" alt="Salesforge"
+                                class="h-6 w-auto object-contain">
+                        </a>
+                        <!-- Duplicate Logos for Loop -->
+                        <a href="https://www.upwork.com/agencies/bpo-companies/?page=3" target="_blank"
+                            rel="noopener noreferrer">
+                            <img src="assets/logo/trust-badges/Upwork-Logo.png" alt="Upwork"
+                                class="h-9 w-auto object-contain">
+                        </a>
+                        <a href="https://clutch.co/profile/bpo-hive" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/logo/trust-badges/Clutch-Logo.png" alt="Clutch"
+                                class="h-9 w-auto object-contain">
+                        </a>
+                        <a href="https://www.trustpilot.com/review/bpohive.com" target="_blank"
+                            rel="noopener noreferrer">
+                            <img src="assets/logo/trust-badges/trustpilotlogo2.webp" alt="Trustpilot"
+                                class="h-12 w-auto object-contain">
+                        </a>
+                        <a href="https://www.salesforge.ai/directory/agencies/bpo-hive" target="_blank"
+                            rel="noopener noreferrer">
+                            <img src="assets/logo/trust-badges/salesforge_Logo_fe56ba5eaa.svg" alt="Salesforge"
+                                class="h-6 w-auto object-contain">
+                        </a>
+                    </div>
                 </div>
+            </div>
+    </section>
+
+    <style>
+        @keyframes featured-scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+
+    <!-- Press & Awards Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-belkins-gray mb-8 text-sm uppercase tracking-wider">Press & Awards</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- USA News -->
+                <a href="https://usanews.com/newsroom/bpo-hive-the-outsourcing-partner-delivering-real-results"
+                    target="_blank" rel="noopener noreferrer"
+                    class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <img src="assets/logo/trust-badges/USA-News.png" alt="USA News" loading="lazy"
+                        class="h-16 object-contain mb-3">
+                    <span class="text-xs text-[#4EA6FE] font-medium">Read article &rarr;</span>
+                </a>
+                <!-- Evergreen Award -->
+                <a href="https://evergreenawards.com/awards/bpo-hive-best-outsourcing-appointment-setting-company-in-the-us-of-2025"
+                    target="_blank" rel="noopener noreferrer"
+                    class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <img src="assets/logo/trust-badges/evergreen.webp" alt="Evergreen Award"
+                        class="h-16 object-contain mb-3" loading="lazy">
+                    <span class="text-xs text-[#4EA6FE] font-medium">View award &rarr;</span>
+                </a>
+                <!-- Identity Magazine -->
+                <a href="https://identity-mag.com/bringing-egyptian-talents-forward-and-showcasing-their-full-potential-a-talk-with-amr-abdelrazzak-founder-and-ceo-at-bpo-hive/"
+                    target="_blank" rel="noopener noreferrer"
+                    class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <img src="assets/logo/trust-badges/identity3.webp" alt="Identity Magazine"
+                        class="h-12 object-contain mb-3" loading="lazy">
+                    <span class="text-xs text-[#4EA6FE] font-medium">Read interview &rarr;</span>
+                </a>
+                <!-- The Manifest -->
+                <a href="https://themanifest.com/company/bpo-hive" target="_blank" rel="noopener noreferrer"
+                    class="flex flex-col items-center p-6 bg-white rounded-xl border border-gray-100 hover:border-[#4EA6FE] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <img src="assets/logo/trust-badges/themanifestlogo.webp" alt="The Manifest"
+                        class="h-12 object-contain mb-3" loading="lazy">
+                    <span class="text-xs text-[#4EA6FE] font-medium">View profile &rarr;</span>
+                </a>
             </div>
         </div>
     </section>
@@ -913,9 +1046,13 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
     <!-- CTA between sections -->
     <section class="py-16 bg-white">
         <div class="text-center">
-            <button onclick="openBookingModal()" class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-xl text-lg">
+            <button onclick="openBookingModal()"
+                class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-xl text-lg">
                 Book Your Free Consultation
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+                    </path>
+                </svg>
             </button>
         </div>
     </section>
@@ -951,7 +1088,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-belkins-dark mb-2">Flat revenue growth</h3>
-                    <p class="text-belkins-gray">Your top-line numbers are falling 2&ndash;3x short of targets because there aren't enough qualified B2B opportunities entering the pipeline.</p>
+                    <p class="text-belkins-gray">Your top-line numbers are falling 2&ndash;3x short of targets because
+                        there aren't enough qualified B2B opportunities entering the pipeline</p>
                 </div>
 
                 <div class="challenge-card scroll-animate bg-white rounded-2xl p-6" style="animation-delay: 0.1s;">
@@ -962,7 +1100,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-belkins-dark mb-2">Lengthy sales cycles</h3>
-                    <p class="text-belkins-gray">Hitting quota drags on for 6&ndash;12 months because prospects entering the funnel aren't sales-ready, stretching every deal to its limit.</p>
+                    <p class="text-belkins-gray">Hitting quota drags on for 6&ndash;12 months because prospects entering
+                        the funnel aren't sales-ready, stretching every deal to its limit</p>
                 </div>
 
                 <div class="challenge-card scroll-animate bg-white rounded-2xl p-6" style="animation-delay: 0.2s;">
@@ -973,7 +1112,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-belkins-dark mb-2">Sales & marketing misalignment</h3>
-                    <p class="text-belkins-gray">When teams operate in silos, marketing passes leads that sales can't convert &mdash; and valuable field insights never make it back.</p>
+                    <p class="text-belkins-gray">When teams operate in silos, marketing passes leads that sales can't
+                        convert &mdash; and valuable field insights never make it back</p>
                 </div>
 
                 <div class="challenge-card scroll-animate bg-white rounded-2xl p-6" style="animation-delay: 0.3s;">
@@ -984,7 +1124,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-belkins-dark mb-2">Operational bottlenecks</h3>
-                    <p class="text-belkins-gray">Day-to-day tasks consume your team's bandwidth, leaving no room to refine go-to-market strategies or hit critical sales targets.</p>
+                    <p class="text-belkins-gray">Day-to-day tasks consume your team's bandwidth, leaving no room to
+                        refine go-to-market strategies or hit critical sales targets</p>
                 </div>
 
                 <div class="challenge-card scroll-animate bg-white rounded-2xl p-6" style="animation-delay: 0.4s;">
@@ -995,7 +1136,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-belkins-dark mb-2">Unreliable lead quality</h3>
-                    <p class="text-belkins-gray">You've poured budget into lead generation and tested multiple platforms, yet turning those leads into booked meetings remains a challenge.</p>
+                    <p class="text-belkins-gray">You've poured budget into lead generation and tested multiple
+                        platforms, yet turning those leads into booked meetings remains a challenge</p>
                 </div>
 
                 <div class="challenge-card scroll-animate bg-white rounded-2xl p-6" style="animation-delay: 0.5s;">
@@ -1006,7 +1148,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-belkins-dark mb-2">Burned by a previous agency</h3>
-                    <p class="text-belkins-gray">Past outsourcing partners delivered underwhelming results, making you hesitant to trust another team with your lead generation.</p>
+                    <p class="text-belkins-gray">Past outsourcing partners delivered underwhelming results, making you
+                        hesitant to trust another team with your lead generation</p>
                 </div>
             </div>
         </div>
@@ -1015,9 +1158,13 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
     <!-- CTA between sections -->
     <section class="py-16 bg-white">
         <div class="text-center">
-            <button onclick="openBookingModal()" class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-xl text-lg">
+            <button onclick="openBookingModal()"
+                class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-xl text-lg">
                 Book Your Free Consultation
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3">
+                    </path>
+                </svg>
             </button>
         </div>
     </section>
@@ -1030,7 +1177,7 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     Scale your revenue,<br>not your headcount
                 </h2>
                 <p class="text-xl text-belkins-gray max-w-3xl mx-auto">
-                    Our strategy for your business is underpinned by deep industry expertise and experience.
+                    Our strategy for your business is underpinned by deep industry expertise and experience
                 </p>
             </div>
 
@@ -1160,7 +1307,7 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
             <h2 class="text-4xl md:text-5xl font-bold text-belkins-dark mb-6">
-                Unlock growth and achieve success<br>in a challenging business landscape.
+                Unlock growth and achieve success<br>in a challenging business landscape
             </h2>
             <button onclick="openBookingModal()"
                 class="btn-primary inline-flex items-center px-8 py-4 bg-belkins-orange text-white font-semibold rounded-full text-lg">
@@ -1641,6 +1788,13 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                 }, 5000);
             });
         </script>
+
+        <div class="text-center mt-12">
+            <button onclick="openBookingModal()"
+                class="btn-primary inline-flex items-center px-8 py-4 bg-belkins-orange text-white font-semibold rounded-full text-lg">
+                Book a Call Today
+            </button>
+        </div>
     </section>
 
     <!-- Pipeline Section - Redesigned with horizontal timeline -->
@@ -1651,7 +1805,7 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     How your pipeline will look with BPO Hive
                 </h2>
                 <p class="text-xl text-gray-500">
-                    Focus on scaling your business while we deliver you sales-ready B2B leads.
+                    Focus on scaling your business while we deliver you sales-ready B2B leads
                 </p>
             </div>
 
@@ -1760,6 +1914,13 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     </div>
                 </div>
             </div>
+
+            <div class="text-center mt-12">
+                <button onclick="openBookingModal()"
+                    class="btn-primary inline-flex items-center px-8 py-4 bg-belkins-orange text-white font-semibold rounded-full text-lg">
+                    Start Your Pipeline Today
+                </button>
+            </div>
         </div>
     </section>
 
@@ -1773,7 +1934,7 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         What sets us apart
                     </h2>
                     <p class="text-xl text-belkins-gray mb-8">
-                        Since 2017, BPO Hive has been the top outbound lead generation agency for B2B companies across
+                        Since 2019, BPO Hive has been the top outbound lead generation agency for B2B companies across
                         50+ industries. Here's why:
                     </p>
                     <button onclick="openBookingModal()"
@@ -1883,7 +2044,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 scroll-animate">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Calculate Your ROI</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">See how much revenue BPO Hive can generate for your business. Adjust the inputs below to estimate your return on investment.</p>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">See how much revenue BPO Hive can generate for your
+                    business. Adjust the inputs below to estimate your return on investment.</p>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12 items-start">
@@ -1898,12 +2060,17 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                             <div class="flex items-center gap-1 bg-[#EBF5FF] rounded-lg px-2 py-0.5">
                                 <span class="text-sm font-bold text-[#4EA6FE]" id="roi-team-val">5</span>
                                 <div class="flex flex-col -my-0.5">
-                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 3L10 8H2L6 3Z" fill="currentColor"/></svg>
-                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 9L2 4H10L6 9Z" fill="currentColor"/></svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12">
+                                        <path d="M6 3L10 8H2L6 3Z" fill="currentColor" />
+                                    </svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12">
+                                        <path d="M6 9L2 4H10L6 9Z" fill="currentColor" />
+                                    </svg>
                                 </div>
                             </div>
                         </label>
-                        <input type="range" id="roi-team" min="1" max="50" value="5" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
+                        <input type="range" id="roi-team" min="1" max="50" value="5"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
                         <div class="flex justify-between text-xs text-gray-400 mt-1"><span>1</span><span>50</span></div>
                     </div>
 
@@ -1914,13 +2081,19 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                             <div class="flex items-center gap-1 bg-[#EBF5FF] rounded-lg px-2 py-0.5">
                                 <span class="text-sm font-bold text-[#4EA6FE]" id="roi-deal-val">$10,000</span>
                                 <div class="flex flex-col -my-0.5">
-                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 3L10 8H2L6 3Z" fill="currentColor"/></svg>
-                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 9L2 4H10L6 9Z" fill="currentColor"/></svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12">
+                                        <path d="M6 3L10 8H2L6 3Z" fill="currentColor" />
+                                    </svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12">
+                                        <path d="M6 9L2 4H10L6 9Z" fill="currentColor" />
+                                    </svg>
                                 </div>
                             </div>
                         </label>
-                        <input type="range" id="roi-deal" min="1000" max="500000" step="1000" value="10000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
-                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>$1K</span><span>$500K</span></div>
+                        <input type="range" id="roi-deal" min="1000" max="500000" step="1000" value="10000"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>$1K</span><span>$500K</span>
+                        </div>
                     </div>
 
                     <!-- Current Appointments/Month -->
@@ -1930,13 +2103,19 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                             <div class="flex items-center gap-1 bg-[#EBF5FF] rounded-lg px-2 py-0.5">
                                 <span class="text-sm font-bold text-[#4EA6FE]" id="roi-appts-val">10</span>
                                 <div class="flex flex-col -my-0.5">
-                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 3L10 8H2L6 3Z" fill="currentColor"/></svg>
-                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 9L2 4H10L6 9Z" fill="currentColor"/></svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12">
+                                        <path d="M6 3L10 8H2L6 3Z" fill="currentColor" />
+                                    </svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12">
+                                        <path d="M6 9L2 4H10L6 9Z" fill="currentColor" />
+                                    </svg>
                                 </div>
                             </div>
                         </label>
-                        <input type="range" id="roi-appts" min="0" max="200" value="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
-                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>0</span><span>200</span></div>
+                        <input type="range" id="roi-appts" min="0" max="200" value="10"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>0</span><span>200</span>
+                        </div>
                     </div>
 
                     <!-- Close Rate -->
@@ -1946,13 +2125,19 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                             <div class="flex items-center gap-1 bg-[#EBF5FF] rounded-lg px-2 py-0.5">
                                 <span class="text-sm font-bold text-[#4EA6FE]" id="roi-close-val">20%</span>
                                 <div class="flex flex-col -my-0.5">
-                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 3L10 8H2L6 3Z" fill="currentColor"/></svg>
-                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 9L2 4H10L6 9Z" fill="currentColor"/></svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12">
+                                        <path d="M6 3L10 8H2L6 3Z" fill="currentColor" />
+                                    </svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12">
+                                        <path d="M6 9L2 4H10L6 9Z" fill="currentColor" />
+                                    </svg>
                                 </div>
                             </div>
                         </label>
-                        <input type="range" id="roi-close" min="5" max="60" value="20" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
-                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>5%</span><span>60%</span></div>
+                        <input type="range" id="roi-close" min="5" max="60" value="20"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>5%</span><span>60%</span>
+                        </div>
                     </div>
 
                     <!-- Monthly Budget -->
@@ -1962,13 +2147,19 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                             <div class="flex items-center gap-1 bg-[#EBF5FF] rounded-lg px-2 py-0.5">
                                 <span class="text-sm font-bold text-[#4EA6FE]" id="roi-invest-val">$5,000</span>
                                 <div class="flex flex-col -my-0.5">
-                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 3L10 8H2L6 3Z" fill="currentColor"/></svg>
-                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12"><path d="M6 9L2 4H10L6 9Z" fill="currentColor"/></svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12">
+                                        <path d="M6 3L10 8H2L6 3Z" fill="currentColor" />
+                                    </svg>
+                                    <svg class="w-2.5 h-2.5 text-[#4EA6FE]/60" viewBox="0 0 12 12">
+                                        <path d="M6 9L2 4H10L6 9Z" fill="currentColor" />
+                                    </svg>
                                 </div>
                             </div>
                         </label>
-                        <input type="range" id="roi-invest" min="1000" max="50000" step="500" value="5000" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
-                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>$1K</span><span>$50K</span></div>
+                        <input type="range" id="roi-invest" min="1000" max="50000" step="500" value="5000"
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#4EA6FE]">
+                        <div class="flex justify-between text-xs text-gray-400 mt-1"><span>$1K</span><span>$50K</span>
+                        </div>
                     </div>
                 </div>
 
@@ -1984,7 +2175,11 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                 <p class="text-3xl font-bold text-gray-900" id="roi-extra-appts">+15</p>
                             </div>
                             <div class="w-12 h-12 bg-[#EBF5FF] rounded-xl flex items-center justify-center">
-                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
                             </div>
                         </div>
 
@@ -1995,7 +2190,11 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                 <p class="text-3xl font-bold text-gray-900" id="roi-extra-deals">+3</p>
                             </div>
                             <div class="w-12 h-12 bg-[#EBF5FF] rounded-xl flex items-center justify-center">
-                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
                             </div>
                         </div>
 
@@ -2006,7 +2205,11 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                 <p class="text-3xl font-bold text-green-600" id="roi-extra-revenue">$30,000</p>
                             </div>
                             <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center">
-                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
                             </div>
                         </div>
 
@@ -2017,7 +2220,11 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                 <p class="text-3xl font-bold text-green-600" id="roi-annual-revenue">$360,000</p>
                             </div>
                             <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center">
-                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                </svg>
                             </div>
                         </div>
 
@@ -2028,23 +2235,37 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                 <p class="text-4xl font-bold text-[#4EA6FE]" id="roi-percentage">500%</p>
                             </div>
                             <div class="w-12 h-12 bg-[#EBF5FF] rounded-xl flex items-center justify-center">
-                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                                <svg class="w-6 h-6 text-[#4EA6FE]" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <button onclick="openBookingModal()" class="btn-primary flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-semibold rounded-xl text-lg">
+                        <button onclick="openBookingModal()"
+                            class="btn-primary flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-semibold rounded-xl text-lg">
                             Book Your Free Consultation
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
                         </button>
-                        <a href="/roi-calculator" class="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#4EA6FE] text-[#4EA6FE] font-semibold rounded-xl text-lg hover:bg-[#4EA6FE] hover:text-white transition-all duration-300">
+                        <a href="/roi-calculator"
+                            class="flex-1 inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-[#4EA6FE] text-[#4EA6FE] font-semibold rounded-xl text-lg hover:bg-[#4EA6FE] hover:text-white transition-all duration-300">
                             Full ROI Calculator
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
                         </a>
                     </div>
 
-                    <p class="text-xs text-gray-400 mt-4 text-center">* Projections based on average client performance. BPO Hive typically delivers 15&ndash;40 additional qualified appointments per month with a 20&ndash;35% close rate improvement.</p>
+                    <p class="text-xs text-gray-400 mt-4 text-center">* Projections based on average client performance.
+                        BPO Hive typically delivers 15&ndash;40 additional qualified appointments per month with a
+                        20&ndash;35% close rate improvement.</p>
                 </div>
             </div>
         </div>
@@ -2091,6 +2312,21 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                                     d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                             </svg>
                         </a>
+                        <a href="https://www.instagram.com/bpohive?igshid=YmMyMTA2M2Y%3D" target="_blank"
+                            rel="noopener noreferrer"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-300 hover:bg-gradient-to-tr hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#8134AF] hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/@bpohive" target="_blank" rel="noopener noreferrer"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center text-gray-300 hover:bg-[#FF0000] hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
                     </div>
                 </div>
 
@@ -2100,13 +2336,13 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     <ul class="space-y-2">
                         <li><a href="/about" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">About
                                 Us</a></li>
-                        <li><a href="/case-studies"
-                                class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Case Studies</a>
+                        <li><a href="/case-studies" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Case
+                                Studies</a>
                         </li>
-                        <li><a href="/careers"
-                                class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Careers</a></li>
-                        <li><a href="/roi-calculator"
-                                class="text-gray-400 hover:text-[#4EA6FE] transition-colors">ROI Calculator</a></li>
+                        <li><a href="/careers" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Careers</a>
+                        </li>
+                        <li><a href="/roi-calculator" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">ROI
+                                Calculator</a></li>
                     </ul>
                 </div>
 
@@ -2116,8 +2352,7 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     <ul class="space-y-2">
                         <li><a href="/industries"
                                 class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Finance</a></li>
-                        <li><a href="/industries"
-                                class="text-gray-400 hover:text-[#4EA6FE] transition-colors">SaaS</a>
+                        <li><a href="/industries" class="text-gray-400 hover:text-[#4EA6FE] transition-colors">SaaS</a>
                         </li>
                         <li><a href="/industries"
                                 class="text-gray-400 hover:text-[#4EA6FE] transition-colors">Consulting</a>
@@ -2169,8 +2404,7 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                         <li class="mt-4"><a href="/careers"
                                 class="text-gray-400 hover:text-[#4EA6FE] transition-colors block">Careers</a>
                         </li>
-                        <li><a href="/about"
-                                class="text-gray-400 hover:text-[#4EA6FE] transition-colors block">Contact
+                        <li><a href="/about" class="text-gray-400 hover:text-[#4EA6FE] transition-colors block">Contact
                                 Us</a></li>
                     </ul>
                 </div>
@@ -2254,7 +2488,7 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
         });
 
         // ROI Calculator
-        (function() {
+        (function () {
             const sliders = {
                 team: document.getElementById('roi-team'),
                 deal: document.getElementById('roi-deal'),
@@ -2312,14 +2546,14 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                 { valId: 'roi-invest-val', sliderId: 'roi-invest' }
             ];
 
-            roiValConfigs.forEach(function(cfg) {
+            roiValConfigs.forEach(function (cfg) {
                 var valEl = document.getElementById(cfg.valId);
                 var wrapper = valEl.parentElement;
                 var slider = document.getElementById(cfg.sliderId);
                 wrapper.style.cursor = 'pointer';
                 wrapper.title = 'Click to edit';
 
-                wrapper.addEventListener('click', function() {
+                wrapper.addEventListener('click', function () {
                     var currentVal = slider.value;
                     var input = document.createElement('input');
                     input.type = 'number';
@@ -2345,7 +2579,7 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                     }
 
                     input.addEventListener('blur', commit);
-                    input.addEventListener('keydown', function(e) {
+                    input.addEventListener('keydown', function (e) {
                         if (e.key === 'Enter') { e.preventDefault(); commit(); }
                         if (e.key === 'Escape') { input.replaceWith(wrapper); }
                     });
@@ -2358,58 +2592,9 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
 
     <!-- Live Rolling Stats Script -->
     <script>
-        (() => {
-            // Starting values
-            let appts = 20347;
-            let revenue = 2300347;
-            let clients = 847;
-
-            const apptEl = document.getElementById('live-appts');
-            const revenueEl = document.getElementById('live-revenue');
-            const clientEl = document.getElementById('live-clients');
-
-            const formatNum = (n) => n.toLocaleString('en-US');
-
-            // Animate number change with fade effect
-            function updateNumber(el, newValue, prefix = '') {
-                // Fade out and slide UP
-                el.style.transition = 'opacity 0.25s ease-out, transform 0.25s ease-out';
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(-20px)';
-
-                setTimeout(() => {
-                    // Reset position below, then animate up to center
-                    el.style.transition = 'none';
-                    el.textContent = prefix + formatNum(newValue);
-                    el.style.transform = 'translateY(20px)';
-                    el.style.opacity = '0';
-
-                    // Force reflow
-                    el.offsetHeight;
-
-                    // Animate new number up into view
-                    el.style.transition = 'opacity 0.25s ease-out, transform 0.25s ease-out';
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                }, 250);
-            }
-
-            // Increment stats every 3 seconds - each by 10 or 20 randomly
-            setInterval(() => {
-                const increment = () => Math.random() < 0.5 ? 10 : 20;
-
-                appts += increment();
-                revenue += increment();
-                clients += increment();
-
-                updateNumber(apptEl, appts);
-                updateNumber(revenueEl, revenue, '$');
-                updateNumber(clientEl, clients);
-            }, 3000);
-        })();
 
         // Typewriter Effect
-        (function() {
+        (function () {
             const phrases = [
                 "book more qualified meetings",
                 "fill your sales pipeline",
@@ -2458,6 +2643,46 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
 
             // Start after a short delay
             setTimeout(type, 500);
+        })();
+    </script>
+
+    <!-- Magnetize particle effect -->
+    <script>
+        (function () {
+            var PARTICLE_COUNT = 20;
+            var COLORS = ['#4EA6FE', '#78BBFA', '#3d9aef', '#a5d4ff', '#2b8ce0'];
+            var SCATTER_RANGE = 80;
+
+            document.querySelectorAll('[data-magnetize]').forEach(function (wrap) {
+                for (var i = 0; i < PARTICLE_COUNT; i++) {
+                    var dot = document.createElement('span');
+                    dot.className = 'magnetize-particle';
+                    var color = COLORS[Math.floor(Math.random() * COLORS.length)];
+                    var size = 2 + Math.random() * 4;
+                    var angle = Math.random() * Math.PI * 2;
+                    var dist = 30 + Math.random() * SCATTER_RANGE;
+                    var tx = Math.cos(angle) * dist;
+                    var ty = Math.sin(angle) * dist;
+                    dot.style.width = size + 'px';
+                    dot.style.height = size + 'px';
+                    dot.style.background = color;
+                    dot.style.left = '50%';
+                    dot.style.top = '50%';
+                    dot.style.transform = 'translate(' + tx + 'px, ' + ty + 'px)';
+                    dot.style.opacity = '0.6';
+                    dot.dataset.tx = tx;
+                    dot.dataset.ty = ty;
+                    wrap.appendChild(dot);
+                }
+
+                wrap.addEventListener('mouseleave', function () {
+                    var dots = wrap.querySelectorAll('.magnetize-particle');
+                    dots.forEach(function (d) {
+                        d.style.transform = 'translate(' + d.dataset.tx + 'px, ' + d.dataset.ty + 'px)';
+                        d.style.opacity = '0.6';
+                    });
+                });
+            });
         })();
     </script>
 </body>

@@ -6,12 +6,17 @@ ErrorDocument 404 /404
 # Clean URLs - Remove .html extension
 RewriteEngine On
 
+# Prevent Apache from auto-handling directories (needed for industries page)
+DirectorySlash Off
+
 # Redirect .html URLs to clean URLs (301 redirect)
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
 RewriteRule ^ /%1 [NC,L,R=301]
 
+# Explicitly serve industries.html for /industries path
+RewriteRule ^industries/?$ industries.html [L]
+
 # Serve .html files for clean URLs
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.*)$ $1.html [L]
