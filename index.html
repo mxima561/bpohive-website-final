@@ -565,7 +565,7 @@
 <body class="bg-white">
     <script>
         function openBookingModal() {
-            Calendly.initPopupWidget({ url: 'https://calendly.com/d/43h-5tz-rkf/discovery-call' });
+            Calendly.initPopupWidget({ url: 'https://calendly.com/d/cxkp-cvw-qyg' });
             return false;
         }
 
@@ -895,7 +895,8 @@
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-4xl mx-auto">
-                <h1 class="animate-fadeInUp text-5xl md:text-7xl font-bold text-belkins-dark mb-6 leading-tight">
+                <h1 id="hero-headline"
+                    class="animate-fadeInUp text-5xl md:text-7xl font-bold text-belkins-dark mb-6 leading-tight">
                     We Fill your Pipeline with<br>Sales Ready Leads
                 </h1>
                 <p class="animate-fadeInUp delay-100 text-xl text-belkins-gray mb-8 max-w-2xl mx-auto">
@@ -1071,7 +1072,7 @@
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 scroll-animate">
-                <h2 class="text-4xl md:text-5xl font-bold text-belkins-dark mb-4">
+                <h2 id="challenges-headline" class="text-4xl md:text-5xl font-bold text-belkins-dark mb-4">
                     What's holding your sales back?
                 </h2>
                 <p class="text-xl text-belkins-gray max-w-3xl mx-auto">
@@ -2685,6 +2686,31 @@
             });
         })();
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('http://localhost:3001/api/content')
+                .then(response => {
+                    if (!response.ok) throw new Error('API not available');
+                    return response.json();
+                })
+                .then(data => {
+                    Object.values(data).forEach(item => {
+                        const el = document.getElementById(item.key);
+                        if (el) {
+                            if (item.type === 'image') {
+                                el.src = 'http://localhost:3001' + item.value;
+                            } else {
+                                el.innerText = item.value;
+                            }
+                        }
+                    });
+                })
+                .catch(err => console.log('Using static content:', err));
+        });
+    </script>
+<script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="I-CQ8_i19v5NaUtIiquEE";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
 </body>
 
 </html>

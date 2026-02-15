@@ -1,0 +1,17 @@
+/*
+Theme Name: BPO Hive Theme
+Theme URI: https://bpohive.com
+Author: BPO Hive
+Author URI: https://bpohive.com
+Description: Custom WordPress theme for BPO Hive, built with Tailwind CSS.
+Version: 1.0
+License: GNI
+License URI: license.txt
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+Text Domain: bpohive
+*/
+
+/* Tailwind CSS will be injected here during build, or loaded separately */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
