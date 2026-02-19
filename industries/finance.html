@@ -85,10 +85,30 @@
                     </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
+                    <a href="/index.html" class="nav-link text-belkins-dark hover:text-bpo-blue transition-colors font-medium">Home</a>
                     <a href="/industries.html" class="nav-link text-belkins-dark font-medium transition-colors">Industries</a>
                     <a href="/pricing.html" class="nav-link text-belkins-dark font-medium transition-colors">Pricing</a>
                     <button onclick="openBookingModal()" class="btn-primary inline-flex items-center px-6 py-2.5 bg-belkins-orange text-white font-semibold rounded-full text-sm">Book a call</button>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-4 py-4 space-y-1">
+                <a href="/index.html" class="block py-3 text-gray-900 font-medium border-b border-gray-100 mb-1">Home</a>
+                <a href="/industries.html" class="block py-3 text-belkins-dark font-medium">Industries</a>
+                <a href="/pricing.html" class="block py-3 text-belkins-dark font-medium">Pricing</a>
+                <a href="/about.html" class="block py-3 text-belkins-dark font-medium">About</a>
+                <a href="/case-studies.html" class="block py-3 text-belkins-dark font-medium">Case Studies</a>
+                <button onclick="openBookingModal()" class="block w-full py-3 mt-4 text-center bg-[#4EA6FE] text-white rounded-full font-medium">Book a call</button>
             </div>
         </div>
     </nav>
@@ -269,5 +289,17 @@
 <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="I-CQ8_i19v5NaUtIiquEE";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
 </script>
+
+    <script>
+        (function() {
+            var btn = document.getElementById('mobile-menu-btn');
+            var menu = document.getElementById('mobile-menu');
+            if (btn && menu) {
+                btn.addEventListener('click', function() {
+                    menu.classList.toggle('hidden');
+                });
+            }
+        })();
+    </script>
 </body>
 </html>
