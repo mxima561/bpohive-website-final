@@ -487,7 +487,7 @@
         /* Live Stats Bar */
         .live-stats-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 0;
             background: #0f1c2e;
             border-radius: 20px;
@@ -926,20 +926,16 @@
         <div class="mt-12 max-w-3xl mx-auto px-4">
             <div class="live-stats-container">
                 <div class="live-stat-item">
-                    <span class="live-stat-number" id="live-leads">85%</span>
-                    <span class="live-stat-label">Client Retention</span>
-                </div>
-                <div class="live-stat-item">
-                    <span class="live-stat-number" id="live-roi">30%</span>
-                    <span class="live-stat-label">Sales Increase (Avg.)</span>
+                    <span class="live-stat-number" id="live-revenue">$25.0M+</span>
+                    <span class="live-stat-label">Revenue Generated</span>
                 </div>
                 <div class="live-stat-item">
                     <span class="live-stat-number" id="live-appts">20,347</span>
                     <span class="live-stat-label">Appointments Set</span>
                 </div>
                 <div class="live-stat-item">
-                    <span class="live-stat-number" id="live-revenue">$25.0M+</span>
-                    <span class="live-stat-label">Revenue Generated</span>
+                    <span class="live-stat-number" id="live-roi">30%</span>
+                    <span class="live-stat-label">90-Day Sales Increase</span>
                 </div>
             </div>
         </div>
@@ -956,8 +952,12 @@
                     <div class="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
 
                     <div class="flex items-center"
-                        style="width:max-content; animation: featured-scroll 100s linear infinite; gap: 12rem;">
+                        style="width:max-content; animation: featured-scroll 40s linear infinite; gap: 12rem;">
                         <!-- Original Logos -->
+                        <div class="flex items-center justify-center font-bold text-2xl text-gray-800 tracking-tighter"
+                            style="min-width: 120px;">
+                            ZWSoft
+                        </div>
                         <a href="https://www.upwork.com/agencies/bpo-companies/?page=3" target="_blank"
                             rel="noopener noreferrer">
                             <img src="assets/logo/trust-badges/Upwork-Logo.png" alt="Upwork"
@@ -978,6 +978,10 @@
                                 class="h-6 w-auto object-contain">
                         </a>
                         <!-- Duplicate Logos for Loop -->
+                        <div class="flex items-center justify-center font-bold text-2xl text-gray-800 tracking-tighter"
+                            style="min-width: 120px;">
+                            ZWSoft
+                        </div>
                         <a href="https://www.upwork.com/agencies/bpo-companies/?page=3" target="_blank"
                             rel="noopener noreferrer">
                             <img src="assets/logo/trust-badges/Upwork-Logo.png" alt="Upwork"
@@ -1015,7 +1019,7 @@
     </style>
 
     <!-- Press & Awards Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-gray-50">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <p class="text-center text-belkins-gray mb-8 text-sm uppercase tracking-wider">Press & Awards</p>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -1055,7 +1059,7 @@
     </section>
 
     <!-- CTA between sections -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-gray-50">
         <div class="text-center">
             <button onclick="openBookingModal()"
                 class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-xl text-lg">
@@ -1069,10 +1073,10 @@
     </section>
 
     <!-- What Issues Section (formerly Challenges) -->
-    <section class="relative py-20 bg-white overflow-hidden">
+    <section class="relative py-20 bg-gray-100 overflow-hidden">
         <!-- Background Splashes -->
         <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white via-blue-50/20 to-white"></div>
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-gray-50 to-gray-100"></div>
             <div
                 class="absolute top-10 -left-20 w-72 h-72 bg-[#EBF5FF] rounded-full mix-blend-multiply filter blur-3xl opacity-60 animate-blob">
             </div>
@@ -1167,7 +1171,7 @@
     </section>
 
     <!-- CTA between sections -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-gray-100">
         <div class="text-center">
             <button onclick="openBookingModal()"
                 class="btn-primary inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-xl text-lg">
@@ -1181,7 +1185,7 @@
     </section>
 
     <!-- Services Section -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-animate">
                 <h2 class="text-4xl md:text-5xl font-bold text-belkins-dark mb-4">
@@ -1315,7 +1319,7 @@
     </section>
 
     <!-- Stats Section -->
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
             <h2 class="text-4xl md:text-5xl font-bold text-belkins-dark mb-6">
                 Unlock growth and achieve success<br>in a challenging business landscape
@@ -1356,8 +1360,8 @@
                                             class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
-                                        <p class="font-bold text-sm text-gray-900">Upwork Client</p>
-                                        <p class="text-xs text-gray-500">Sep 2023</p>
+                                        <p class="font-bold text-sm text-gray-900">Sarah Jenkins, VP of Sales</p>
+                                        <p class="text-xs text-gray-500">TechFlow Solutions</p>
                                     </div>
                                 </div>
                             </div>
@@ -1367,9 +1371,10 @@
                         <div class="w-full md:w-1/3 flex-shrink-0 px-3">
                             <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 h-full flex flex-col">
                                 <div class="flex text-[#FFC107] mb-4">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                                <p class="text-gray-600 mb-6 text-sm flex-grow">"Amr is a great contact to have and work
-                                    with. He delivers as requested every time and we will continue to work with BPO Hive
-                                    as a trusted vendor."</p>
+                                <p class="text-gray-600 mb-6 text-sm flex-grow">"BPO Hive provided exceptional lead
+                                    generation support, connecting us with key enterprise clients and significantly
+                                    boosting our pipeline. Their team's professionalism and outreach strategies exceeded
+                                    our expectations."</p>
                                 <div class="flex items-center">
                                     <div
                                         class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-3">
@@ -1377,8 +1382,8 @@
                                             class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
-                                        <p class="font-bold text-sm text-gray-900">Upwork Client</p>
-                                        <p class="text-xs text-gray-500">Jul - Sep 2023</p>
+                                        <p class="font-bold text-sm text-gray-900">Head of Global Sales</p>
+                                        <p class="text-xs text-gray-500">ZWSoft</p>
                                     </div>
                                 </div>
                             </div>
@@ -1398,8 +1403,9 @@
                                             class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
-                                        <p class="font-bold text-sm text-gray-900">Upwork Client</p>
-                                        <p class="text-xs text-gray-500">Mar - May 2023</p>
+                                        <p class="font-bold text-sm text-gray-900">Michael Chang, Director of Marketing
+                                        </p>
+                                        <p class="text-xs text-gray-500">Elevate Partners</p>
                                     </div>
                                 </div>
                             </div>
@@ -1418,8 +1424,8 @@
                                             class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
-                                        <p class="font-bold text-sm text-gray-900">Upwork Client</p>
-                                        <p class="text-xs text-gray-500">Feb - May 2023</p>
+                                        <p class="font-bold text-sm text-gray-900">Jessica Miller, CEO</p>
+                                        <p class="text-xs text-gray-500">Nexus Consulting Group</p>
                                     </div>
                                 </div>
                             </div>
@@ -1438,8 +1444,9 @@
                                             class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
-                                        <p class="font-bold text-sm text-gray-900">Upwork Client</p>
-                                        <p class="text-xs text-gray-500">Mar - Apr 2023</p>
+                                        <p class="font-bold text-sm text-gray-900">David Reynolds, Operations Manager
+                                        </p>
+                                        <p class="text-xs text-gray-500">Apex Build Systems</p>
                                     </div>
                                 </div>
                             </div>
@@ -1459,8 +1466,8 @@
                                             class="w-6 h-6" loading="lazy">
                                     </div>
                                     <div>
-                                        <p class="font-bold text-sm text-gray-900">Upwork Client</p>
-                                        <p class="text-xs text-gray-500">Aug 2022 - Jan 2023</p>
+                                        <p class="font-bold text-sm text-gray-900">Emily Thorne, Head of Growth</p>
+                                        <p class="text-xs text-gray-500">CloudSync Technologies</p>
                                     </div>
                                 </div>
                             </div>
@@ -1809,7 +1816,7 @@
     </section>
 
     <!-- Pipeline Section - Redesigned with horizontal timeline -->
-    <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section class="py-20 bg-gray-50 border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-animate">
                 <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
