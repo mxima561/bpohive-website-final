@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
   <script type="text/javascript">
     window._mfq = window._mfq || [];
     (function() {
@@ -36,7 +37,6 @@
         gtag('config', 'G-MRYSLESY4H');
     </script>
 
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service - BPO Hive</title>
     
@@ -91,7 +91,8 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                 <a href="industries.html" class="block py-3 text-belkins-dark font-medium">Industries</a>
                 <a href="pricing.html" class="block py-3 text-belkins-dark font-medium">Pricing</a>
                 <a href="about.html" class="block py-3 text-belkins-dark font-medium">About</a>
-                <a href="case-studies.html" class="block py-3 text-belkins-dark font-medium">Case Studies</a>
+                <a href="blogs.html" class="block py-3 text-belkins-dark font-medium">Blogs</a>
+                <a href="case-studies.html" class="block py-3 text-belkins-dark font-medium">Case studies</a>
                 <button onclick="openBookingModal()" class="block w-full py-3 mt-4 text-center bg-[#4EA6FE] text-white rounded-full font-medium">Book a call</button>
             </div>
         </div>
@@ -292,6 +293,40 @@ window[(function(_uII,_9Z){var _DptK5='';for(var _4ABPJN=0;_4ABPJN<_uII.length;_
                 });
             }
         })();
+    </script>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Mobile dropdown toggles
+        document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const dropdown = btn.closest('.mobile-dropdown');
+                const content = dropdown.querySelector('.mobile-dropdown-content');
+                const icon = dropdown.querySelector('.mobile-dropdown-icon');
+
+                // Close other dropdowns
+                document.querySelectorAll('.mobile-dropdown').forEach(other => {
+                    if (other !== dropdown) {
+                        other.querySelector('.mobile-dropdown-content')?.classList.add('hidden');
+                        other.querySelector('.mobile-dropdown-icon')?.classList.remove('rotate-180');
+                    }
+                });
+
+                // Toggle current dropdown
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
     </script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
   <script type="text/javascript">
     window._mfq = window._mfq || [];
     (function() {
@@ -36,11 +37,11 @@
         gtag('config', 'G-MRYSLESY4H');
     </script>
 
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roofing Lead Generation - BPO Hive</title>
     <meta name="description" content="BPO Hive helps roofing contractors generate qualified leads through targeted outreach strategies connecting you with homeowners and property managers who need roof repairs, replacements, and inspections.">
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo/favicon.png">
+    <link rel="canonical" href="https://bpohive.com/industries/roofing">
     <link rel="stylesheet" href="../assets/css/tailwind.css">
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
@@ -107,7 +108,8 @@
                 <a href="../industries.html" class="block py-3 text-belkins-dark font-medium">Industries</a>
                 <a href="../pricing.html" class="block py-3 text-belkins-dark font-medium">Pricing</a>
                 <a href="../about.html" class="block py-3 text-belkins-dark font-medium">About</a>
-                <a href="../case-studies.html" class="block py-3 text-belkins-dark font-medium">Case Studies</a>
+                <a href="../blogs.html" class="block py-3 text-belkins-dark font-medium">Blogs</a>
+                <a href="../case-studies.html" class="block py-3 text-belkins-dark font-medium">Case studies</a>
                 <button onclick="openBookingModal()" class="block w-full py-3 mt-4 text-center bg-[#4EA6FE] text-white rounded-full font-medium">Book a call</button>
             </div>
         </div>
@@ -237,7 +239,8 @@
                     <h4 class="font-semibold text-belkins-dark mb-4">Company</h4>
                     <ul class="space-y-2">
                         <li><a href="../about.html" class="text-belkins-gray hover:text-belkins-orange transition-colors">About Us</a></li>
-                        <li><a href="../case-studies.html" class="text-belkins-gray hover:text-belkins-orange transition-colors">Case Studies</a></li>
+                        <li><a href="../blogs.html" class="text-belkins-gray hover:text-belkins-orange transition-colors">Blogs</a></li>
+                        <li><a href="../case-studies.html" class="text-belkins-gray hover:text-belkins-orange transition-colors">Case studies</a></li>
                         <li><a href="../careers.html" class="text-belkins-gray hover:text-belkins-orange transition-colors">Careers</a></li>
                     </ul>
                 </div>
@@ -300,6 +303,40 @@
                 });
             }
         })();
+    </script>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Mobile dropdown toggles
+        document.querySelectorAll('.mobile-dropdown-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const dropdown = btn.closest('.mobile-dropdown');
+                const content = dropdown.querySelector('.mobile-dropdown-content');
+                const icon = dropdown.querySelector('.mobile-dropdown-icon');
+
+                // Close other dropdowns
+                document.querySelectorAll('.mobile-dropdown').forEach(other => {
+                    if (other !== dropdown) {
+                        other.querySelector('.mobile-dropdown-content')?.classList.add('hidden');
+                        other.querySelector('.mobile-dropdown-icon')?.classList.remove('rotate-180');
+                    }
+                });
+
+                // Toggle current dropdown
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
     </script>
 </body>
 </html>
