@@ -30,6 +30,7 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '1492963711498633');
 fbq('track', 'PageView');
+fbq('track', 'Lead');
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1492963711498633&ev=PageView&noscript=1"
@@ -42,6 +43,9 @@ src="https://www.facebook.com/tr?id=1492963711498633&ev=PageView&noscript=1"
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-MRYSLESY4H');
+        // Fire conversion: form successfully submitted (this page only loads after a submission)
+        gtag('event', 'generate_lead', { 'event_category': 'form', 'event_label': 'form-received' });
+        window.dataLayer.push({ 'event': 'generate_lead', 'lead_source': 'form-received' });
     </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
