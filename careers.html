@@ -114,14 +114,14 @@ src="https://www.facebook.com/tr?id=1492963711498633&ev=PageView&noscript=1"
             background: #4EA6FE;
             color: white;
         }
-        #apply-modal {
+        #apply-modal-sdr, #apply-modal-vendor {
             animation: fadeIn 0.2s ease-out;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-        #apply-modal > div:last-child {
+        #apply-modal-sdr > div:last-child, #apply-modal-vendor > div:last-child {
             animation: slideUp 0.3s ease-out;
         }
         @keyframes slideUp {
@@ -230,13 +230,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </section>
 
-    <!-- Application Modal -->
-    <div id="apply-modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeApplyModal()"></div>
+    <!-- Application Modal: SDR -->
+    <div id="apply-modal-sdr" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeApplyModal('apply-modal-sdr')"></div>
         <div class="absolute inset-4 md:inset-10 lg:inset-20 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
             <div class="flex items-center justify-between p-4 border-b border-gray-200">
                 <h3 class="text-xl font-bold text-bpo-dark">Apply for Position</h3>
-                <button onclick="closeApplyModal()" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
+                <button onclick="closeApplyModal('apply-modal-sdr')" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
                     <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
@@ -257,12 +257,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 
+    <!-- Application Modal: Vendor Acquisition -->
+    <div id="apply-modal-vendor" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeApplyModal('apply-modal-vendor')"></div>
+        <div class="absolute inset-4 md:inset-10 lg:inset-20 bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h3 class="text-xl font-bold text-bpo-dark">Apply for Position</h3>
+                <button onclick="closeApplyModal('apply-modal-vendor')" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-auto">
+                <script type="text/javascript" src="https://form.jotform.com/jsform/262284958216163"></script>
+            </div>
+        </div>
+    </div>
+
     <!-- Open Positions Section -->
     <section id="open-positions" class="py-20 bg-white">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-animate">
                 <h2 class="text-4xl font-bold text-bpo-dark mb-4">Open Positions</h2>
-                <p class="text-xl text-bpo-gray"><span class="text-bpo-blue font-semibold">1 position</span> available</p>
+                <p class="text-xl text-bpo-gray"><span class="text-bpo-blue font-semibold">2 positions</span> available</p>
             </div>
 
             <!-- Jobs Container -->
@@ -290,7 +308,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </div>
                         </div>
                         <div class="md:ml-6">
-                            <button onclick="openApplyModal()" class="btn-primary inline-flex items-center px-6 py-3 text-white font-medium rounded-full">
+                            <button onclick="openApplyModal('apply-modal-sdr')" class="btn-primary inline-flex items-center px-6 py-3 text-white font-medium rounded-full">
+                                Apply Now
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vendor Acquisition -->
+                <div class="job-card scroll-animate bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold text-bpo-dark mb-2">Vendor Acquisition Specialist</h3>
+                            <p class="text-bpo-gray mb-4">Identify, engage, and onboard new vendor partners. Own outbound prospecting and relationship-building to grow our vendor network.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Remote
+                                </span>
+                                <span class="tag px-3 py-1 bg-gray-100 text-bpo-gray text-sm rounded-full flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Full-time
+                                </span>
+                                <span class="tag px-3 py-1 bg-blue-50 text-bpo-blue text-sm rounded-full font-medium">Vendor Relations</span>
+                            </div>
+                        </div>
+                        <div class="md:ml-6">
+                            <button onclick="openApplyModal('apply-modal-vendor')" class="btn-primary inline-flex items-center px-6 py-3 text-white font-medium rounded-full">
                                 Apply Now
                                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -307,19 +358,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
     <script>
         // Modal functions
-        function openApplyModal() {
-            document.getElementById('apply-modal').classList.remove('hidden');
+        function openApplyModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeApplyModal() {
-            document.getElementById('apply-modal').classList.add('hidden');
+        function closeApplyModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
             document.body.style.overflow = '';
         }
 
         // Close modal on Escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeApplyModal();
+            if (e.key === 'Escape') {
+                closeApplyModal('apply-modal-sdr');
+                closeApplyModal('apply-modal-vendor');
+            }
         });
 
         // Initialize JotForm
